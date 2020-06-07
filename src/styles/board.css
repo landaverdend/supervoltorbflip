@@ -1,0 +1,112 @@
+/* Make the dimension adjust to whatever the current state dimension is.
+ * https://medium.com/@fionnachan/dynamic-number-of-rows-and-columns-with-css-grid-layout-and-css-variables-cb8e8381b6f2
+ */
+:root {
+  --dimension: 5;
+}
+
+.grid-container {
+  display: grid;
+  justify-content: center;
+  margin: auto;
+  grid-template-columns: repeat(var(--dimension), auto);
+  grid-gap: 0.4rem;
+}
+
+.grid-item {
+  /* border: 1px solid black; */
+  text-align: center;
+  /* transition: all 0.5s;
+  transform-style: preserve-3d;
+  perspective: 1000px; */
+}
+
+.grid-item img {
+  height: 7rem;
+  width: 7rem;
+}
+/* for the value on the thing */
+.grid-item img#value {
+  /* transform: rotateY(180deg); */
+  position: absolute;
+  /* top: -5rem !important; */
+  height: 1rem;
+  width: 1rem;
+}
+
+#bombIcon {
+  position: absolute;
+  z-index: 1;
+  margin-left: 0.8rem;
+  margin-top: 0.8rem;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+#bombIcon:hover {
+  z-index: 1;
+}
+
+.container {
+  -webkit-perspective: 800px;
+  -moz-perspective: 800px;
+  -o-perspective: 800px;
+  perspective: 800px;
+}
+.card {
+  -webkit-transition: -webkit-transform 1s;
+  -moz-transition: -moz-transform 1s;
+  -o-transition: -o-transform 1s;
+  transition: transform 0.6s;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  /* -webkit-transform-origin: 50% 50%; */
+}
+.card div {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.card .back {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+.card.back.valueIcon {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+.valueIcon img {
+  position: absolute;
+  z-index: 1;
+  margin-left: -2rem;
+  margin-top: -5.5rem;
+  height: 4rem;
+  width: 4rem;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.grid-item .container .card .front img:hover {
+  /* content: url(../assets/tileHover.png); */
+  cursor: pointer;
+}
+
+.grid-item .container .card .back img:hover {
+  /* content: url(../assets/clickedTileHover.png); */
+  cursor: pointer;
+}
