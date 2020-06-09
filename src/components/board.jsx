@@ -1,6 +1,11 @@
 import { connect } from "react-redux";
 import React from "react";
 import "../styles/board.css";
+import {
+  FLIP_ALL,
+  UPDATE_CLICKED,
+  UPDATE_CURRENT_TILE,
+} from "../actions/actionTypes.js";
 import BoardTile from "./boardTile.jsx";
 
 const Board = (props) => {
@@ -20,8 +25,12 @@ const Board = (props) => {
           <BoardTile
             row={i}
             col={j} //indices of this tile
-            val={grid[i][j].value} //value of tile.
+            value={grid[i][j].value} //value of tile.
             clickable={grid[i][j].clickable}
+            clicked={props.grid[i][j].clicked}
+            setClicked={props.setClicked}
+            updateCurrentTile={props.updateCurrentTile}
+            currentTile={props.currentTile}
           />
         );
       }
@@ -29,15 +38,19 @@ const Board = (props) => {
     return temp;
   };
 
-  const handleRightClick = (event) => {
-    //event.preventDefault();
-  };
-
   return (
     <div
       className="grid-container"
+      draggable={"false"}
       onContextMenu={(event) => {
-        handleRightClick(event);
+        event.preventDefault();
+        props.flipAll();
+      }}
+      // need to enable tab index to get key press working.
+      tabIndex={0}
+      onKeyDown={(event) => {
+        // event.preventDefault();
+        props.updateCurrentTile();
       }}
     >
       {constructTileGrid()}
@@ -49,7 +62,18 @@ function mapStateToProps(state) {
   return {
     dimension: state.boardReducer.dimension,
     grid: state.boardReducer.grid,
+    currentTile: state.boardReducer.currentTile,
   };
 }
 
-export default connect(mapStateToProps)(Board);
+function mapDispatchToProps(dispatch) {
+  return {
+    setClicked: (row, col) =>
+      dispatch({ type: UPDATE_CLICKED, row: row, col: col }),
+    flipAll: () => dispatch({ type: FLIP_ALL }),
+    updateCurrentTile: (row, col) =>
+      dispatch({ type: UPDATE_CURRENT_TILE, row: row, col: col }),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Board);

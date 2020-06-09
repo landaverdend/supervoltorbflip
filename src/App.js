@@ -1,6 +1,5 @@
 import React from 'react';
 import Board from './components/board.jsx';
-import './styles/App.css';
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import  RootReducer  from "./reducers/rootReducer.js";
