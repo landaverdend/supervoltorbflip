@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import MemoIcon from "./memoIcon";
+
 import "../styles/board.css";
 
 const BoardTile = (props) => {
@@ -14,15 +15,8 @@ const BoardTile = (props) => {
     THREE: false,
   });
 
-  const [hovered, setHovered] = useState(false);
-
   const checkCurrent = () => {
     return props.currentTile[0] === row && props.currentTile[1] === col;
-  };
-
-  //flip the sign of whether or not hovered over.
-  const handleMouseOver = (bool) => {
-    setHovered(bool);
   };
 
   const resetMemos = () => {
@@ -44,10 +38,11 @@ const BoardTile = (props) => {
         resetMemos();
       }}
       onMouseEnter={(event) => {
-        handleMouseOver(true);
+        props.updateCurrentTile({ type: "mouse", row: row, col: col });
+        // handleMouseOver(true);
       }}
       onMouseLeave={(event) => {
-        handleMouseOver(false);
+        props.updateCurrentTile({ type: "mouse", row: -1, col: -1 });
       }}
     >
       <div className="container">
@@ -58,7 +53,7 @@ const BoardTile = (props) => {
               <MemoIcon memoState={memos} />
               <img
                 src={
-                  hovered
+                  checkCurrent()
                     ? require("../assets/tileHover.png")
                     : require("../assets/tile.png")
                 }
@@ -68,7 +63,7 @@ const BoardTile = (props) => {
             <div className="back">
               <img
                 src={
-                  hovered
+                  checkCurrent()
                     ? require("../assets/clickedicons/clickedTileHover" +
                         props.value +
                         ".png")

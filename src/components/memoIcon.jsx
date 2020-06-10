@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const MemoIcon = (props) => {
   let memos = props.memoState;
@@ -6,11 +6,11 @@ const MemoIcon = (props) => {
     <>
       {memos.BOMB ? (
         <img
-          id='bombIcon'
-          src={require('../assets/memoIcons/memoBomb.png')}
+          id="bombIcon"
+          src={require("../assets/memoIcons/memoBomb.png")}
         ></img>
       ) : (
-        ''
+        ""
       )}
     </>
   );

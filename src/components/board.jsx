@@ -49,8 +49,8 @@ const Board = (props) => {
       // need to enable tab index to get key press working.
       tabIndex={0}
       onKeyDown={(event) => {
-        // event.preventDefault();
-        props.updateCurrentTile();
+        event.preventDefault();
+        props.updateCurrentTile({ type: "key", keyCode: event.keyCode });
       }}
     >
       {constructTileGrid()}
@@ -71,8 +71,11 @@ function mapDispatchToProps(dispatch) {
     setClicked: (row, col) =>
       dispatch({ type: UPDATE_CLICKED, row: row, col: col }),
     flipAll: () => dispatch({ type: FLIP_ALL }),
-    updateCurrentTile: (row, col) =>
-      dispatch({ type: UPDATE_CURRENT_TILE, row: row, col: col }),
+    updateCurrentTile: (eventInfo) =>
+      dispatch({
+        type: UPDATE_CURRENT_TILE,
+        eventInfo: eventInfo,
+      }),
   };
 }
 
