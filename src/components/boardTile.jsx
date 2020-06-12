@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import MemoIcon from "./memoIcon";
+import OutsideTile from "./outsideTile";
 
 import "../styles/board.css";
 
@@ -33,15 +34,14 @@ const BoardTile = (props) => {
       }}
       onClick={() => {
         if (props.clickable) {
-          props.setClicked(row, col);
+          props.setClicked();
         }
         resetMemos();
       }}
-      onMouseEnter={(event) => {
+      onMouseEnter={() => {
         props.updateCurrentTile({ type: "mouse", row: row, col: col });
-        // handleMouseOver(true);
       }}
-      onMouseLeave={(event) => {
+      onMouseLeave={() => {
         props.updateCurrentTile({ type: "mouse", row: -1, col: -1 });
       }}
     >
@@ -76,16 +76,12 @@ const BoardTile = (props) => {
             </div>
           </div>
         ) : (
-          //outside tile
-          <>
-            <img
-              src={require("../assets/outsideTiles/outsideTile" +
-                ((props.row + props.col) % 5) +
-                ".png")}
-              alt={""}
-              draggable={"false"}
-            ></img>
-          </>
+          <OutsideTile
+            row={props.row}
+            col={props.col}
+            pointSum={props.pointSum}
+            bombCount={props.bombCount}
+          />
         )}
       </div>
     </div>

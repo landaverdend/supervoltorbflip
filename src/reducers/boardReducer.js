@@ -15,14 +15,15 @@ const initialState = {
 };
 
 const boardReducer = (state = initialState, action) => {
-  let row = action.row;
-  let col = action.col;
   let ref = state.grid.map((arr) => {
     return arr.slice();
   });
 
   if (action.type === UPDATE_CLICKED) {
-    ref[row][col].clicked = !state.grid[row][col].clicked;
+    let curR = state.currentTile[0];
+    let curL = state.currentTile[1];
+    if (curR === -1 || curL === -1) return state;
+    ref[curR][curL].clicked = true;
     return { ...state, grid: ref };
   }
 
@@ -30,7 +31,7 @@ const boardReducer = (state = initialState, action) => {
     for (let i = 0; i < ref.length; i++) {
       for (let j = 0; j < ref[i].length; j++) {
         if (ref[i][j].clickable) {
-          ref[i][j].clicked = true;
+          ref[i][j].clicked = !ref[i][j].clicked;
         }
       }
     }
@@ -43,6 +44,7 @@ const boardReducer = (state = initialState, action) => {
       let cur = [action.eventInfo.row, action.eventInfo.col];
       return { ...state, currentTile: cur };
     }
+
     if (action.eventInfo.type === "key") {
       let cur = keyHandler(
         state.currentTile[0],
@@ -50,7 +52,6 @@ const boardReducer = (state = initialState, action) => {
         action.eventInfo.keyCode,
         state.dimension
       );
-      console.log(cur);
       return { ...state, currentTile: cur };
     }
   }

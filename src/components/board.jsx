@@ -15,7 +15,6 @@ const Board = (props) => {
   let cssDim = parseInt(htmlStyles.getPropertyValue("--dimension"));
   if (cssDim !== props.dimension)
     document.documentElement.style.setProperty("--dimension", props.dimension);
-
   //helper method to map each grid value to a board tile component.
   const constructTileGrid = () => {
     let temp = [];
@@ -27,10 +26,12 @@ const Board = (props) => {
             col={j} //indices of this tile
             value={grid[i][j].value} //value of tile.
             clickable={grid[i][j].clickable}
-            clicked={props.grid[i][j].clicked}
+            clicked={grid[i][j].clicked}
             setClicked={props.setClicked}
             updateCurrentTile={props.updateCurrentTile}
             currentTile={props.currentTile}
+            pointSum={grid[i][j].pointSum}
+            bombCount={grid[i][j].bombCount}
           />
         );
       }
@@ -42,15 +43,23 @@ const Board = (props) => {
     <div
       className="grid-container"
       draggable={"false"}
-      onContextMenu={(event) => {
-        event.preventDefault();
-        props.flipAll();
-      }}
       // need to enable tab index to get key press working.
       tabIndex={0}
       onKeyDown={(event) => {
         event.preventDefault();
-        props.updateCurrentTile({ type: "key", keyCode: event.keyCode });
+        //arrow key.
+        if (event.keyCode <= 40 && event.keyCode >= 37) {
+          props.updateCurrentTile({ type: "key", keyCode: event.keyCode });
+        }
+
+        //spacebar
+        if (event.keyCode === 32) {
+          props.setClicked();
+        }
+        //esc
+        if (event.keyCode == 27) {
+          props.flipAll();
+        }
       }}
     >
       {constructTileGrid()}
@@ -68,8 +77,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    setClicked: (row, col) =>
-      dispatch({ type: UPDATE_CLICKED, row: row, col: col }),
+    setClicked: () => dispatch({ type: UPDATE_CLICKED }),
     flipAll: () => dispatch({ type: FLIP_ALL }),
     updateCurrentTile: (eventInfo) =>
       dispatch({

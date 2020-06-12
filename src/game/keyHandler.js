@@ -8,7 +8,8 @@ const ARROW_KEYS = {
 export const keyHandler = (row, col, keyCode, dimension) => {
   //   let temp = currentTile.splice();
   //   let temp = [row, col];
-  let edge = dimension - 2;
+  if (row === -1 && col === -1) return [0, 0];
+
   switch (keyCode) {
     case ARROW_KEYS.UP:
       row--;
@@ -23,6 +24,7 @@ export const keyHandler = (row, col, keyCode, dimension) => {
       col++;
       break;
   }
+  let edge = dimension - 2;
   //edge cases.
   col = col < 0 ? edge : col;
   col = col > edge ? 0 : col;
