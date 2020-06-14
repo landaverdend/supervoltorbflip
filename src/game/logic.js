@@ -8,7 +8,7 @@ export const generateInitialGrid = (dimension) => {
       let edge = dimension - 1;
 
       if (i !== edge && j !== edge)
-        cols.push({ value: TileType.ONE, clickable: true, clicked: false });
+        cols.push({ value: TileType.BOMB, clickable: true, clicked: false });
       else
         cols.push({
           clickable: false,
@@ -30,7 +30,6 @@ function calculateEdgeTileValues(arr) {
     for (let j = 0; j < edge; j++) {
       switch (arr[i][j].value) {
         case TileType.BOMB:
-          //for each tile at end of row, count total amount of lossTiles in that row.
           arr[i][edge].bombCount++;
           arr[edge][j].bombCount++;
           break;

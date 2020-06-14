@@ -1,6 +1,8 @@
 import React from "react";
 
 const OutsideTile = (props) => {
+  let pointString = props.pointSum + "";
+
   return (
     <>
       <img
@@ -12,7 +14,11 @@ const OutsideTile = (props) => {
       ></img>
       <img
         id="points"
-        src={require("../assets/outsideCount/count" + props.pointSum + ".png")}
+        src={require("../assets/outsideCount/count" + pointString + ".png")}
+      ></img>
+      <img
+        id="bombCount"
+        src={require("../assets/outsideCount/count" + props.bombCount + ".png")}
       ></img>
     </>
   );

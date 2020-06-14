@@ -34,6 +34,15 @@
   width: 1.5rem;
 }
 
+#bombCount {
+  position: absolute;
+  z-index: 1;
+  margin-left: -2.75rem;
+  margin-top: 3.75rem;
+  height: 1.6rem;
+  width: 1.6rem;
+}
+
 #bombIcon {
   position: absolute;
   z-index: 1;
