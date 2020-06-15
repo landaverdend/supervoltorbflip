@@ -7,6 +7,8 @@ import {
   UPDATE_CLICKED,
   UPDATE_CURRENT_TILE,
   UPDATE_MEMOS,
+  UPDATE_ROUND_SCORE,
+  UPDATE_TOTAL_SCORE,
 } from "../actions/actionTypes.js";
 import BoardTile from "./boardTile.jsx";
 
@@ -33,28 +35,11 @@ const Board = (props) => {
     if (event.keyCode === 27) {
       props.flipAll();
     }
-
+    if (event.keyCode === 85) {
+      props.updateRoundScore(props.roundScore * 2);
+      props.updateTotalScore(props.totalScore * 3);
+    }
     memoHandler(event.keyCode, grid, props.currentTile, props.updateMemos);
-    // //tilde
-    // if (event.keyCode === 192 && good) {
-    //   let memos = grid[props.currentTile[0]][props.currentTile[1]].memos;
-    //   if (memos !== undefined)
-    //     props.updateMemos({ ...memos, BOMB: !memos.BOMB });
-    // }
-    // //one key
-    // if (event.keyCode === 49 && good) {
-    //   let memos = grid[props.currentTile[0]][props.currentTile[1]].memos;
-    //   if (memos !== undefined) props.updateMemos({ ...memos, ONE: !memos.ONE });
-    // }
-    // if (event.keyCode === 50 && good) {
-    //   let memos = grid[props.currentTile[0]][props.currentTile[1]].memos;
-    //   if (memos !== undefined) props.updateMemos({ ...memos, TWO: !memos.TWO });
-    // }
-    // if (event.keyCode === 51 && good) {
-    //   let memos = grid[props.currentTile[0]][props.currentTile[1]].memos;
-    //   if (memos !== undefined)
-    //     props.updateMemos({ ...memos, THREE: !memos.THREE });
-    // }
   };
   //helper method to map each grid value to a board tile component.
   const constructTileGrid = () => {
@@ -102,6 +87,8 @@ function mapStateToProps(state) {
     dimension: state.boardReducer.dimension,
     grid: state.boardReducer.grid,
     currentTile: state.boardReducer.currentTile,
+    roundScore: state.scoreReducer.roundScore,
+    totalScore: state.scoreReducer.totalScore,
   };
 }
 
@@ -116,6 +103,11 @@ function mapDispatchToProps(dispatch) {
       }),
     updateMemos: (eventInfo) =>
       dispatch({ type: UPDATE_MEMOS, eventInfo: eventInfo }),
+    updateRoundScore: (val) =>
+      dispatch({ type: UPDATE_ROUND_SCORE, value: val }),
+    updateTotalScore: (val) => {
+      dispatch({ type: UPDATE_TOTAL_SCORE, value: val });
+    },
   };
 }
 

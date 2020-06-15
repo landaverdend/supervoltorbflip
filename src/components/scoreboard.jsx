@@ -27,6 +27,12 @@ const ScoreBoard = (props) => {
 
   return (
     <div className="score-container">
+      <div className="level-box">
+        <div className="score-text">Current Level:</div>
+        <img
+          src={require("../assets/scoreboard/score" + props.level + ".png")}
+        ></img>
+      </div>
       <div className={"score"} id={"score1"}>
         <div className={"score-text"}>Round Score:</div>{" "}
         {toImageArray(formattedRS)}
@@ -44,6 +50,7 @@ function mapStateToProps(state) {
   return {
     roundScore: state.scoreReducer.roundScore,
     totalScore: state.scoreReducer.totalScore,
+    level: state.scoreReducer.level,
   };
 }
 export default connect(mapStateToProps)(ScoreBoard);
