@@ -1,4 +1,5 @@
 import TileType from "./tileType.js";
+const initialMemos = { BOMB: false, ONE: false, TWO: false, THREE: false };
 
 export const generateInitialGrid = (dimension) => {
   let rows = [];
@@ -6,9 +7,14 @@ export const generateInitialGrid = (dimension) => {
     let cols = [];
     for (let j = 0; j < dimension; j++) {
       let edge = dimension - 1;
-
       if (i !== edge && j !== edge)
-        cols.push({ value: TileType.BOMB, clickable: true, clicked: false });
+        cols.push({
+          value: TileType.BOMB,
+          clickable: true,
+          clicked: false,
+          memos: initialMemos,
+        });
+      // outside tile
       else
         cols.push({
           clickable: false,

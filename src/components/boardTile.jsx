@@ -9,19 +9,9 @@ const BoardTile = (props) => {
   const row = props.row;
   const col = props.col;
   const clicked = props.clicked;
-  const [memos, setMemos] = useState({
-    BOMB: false,
-    ONE: false,
-    TWO: false,
-    THREE: false,
-  });
-
+  const memos = props.memos;
   const checkCurrent = () => {
     return props.currentTile[0] === row && props.currentTile[1] === col;
-  };
-
-  const resetMemos = () => {
-    setMemos({ BOMB: false, ONE: false, TWO: false, THREE: false });
   };
 
   return (
@@ -30,13 +20,12 @@ const BoardTile = (props) => {
       onContextMenu={(event) => {
         event.preventDefault();
         if (props.clickable && !clicked)
-          setMemos({ ...memos, BOMB: !memos.BOMB });
+          props.updateMemos({ ...memos, BOMB: !props.memos.BOMB });
       }}
       onClick={() => {
         if (props.clickable) {
           props.setClicked();
         }
-        resetMemos();
       }}
       onMouseEnter={() => {
         props.updateCurrentTile({ type: "mouse", row: row, col: col });
@@ -65,24 +54,24 @@ const BoardTile = (props) => {
                 src={
                   checkCurrent()
                     ? require("../assets/clickedicons/clickedTileHover" +
-                      props.value +
-                      ".png")
+                        props.value +
+                        ".png")
                     : require("../assets/clickedicons/clicked" +
-                      props.value +
-                      ".png")
+                        props.value +
+                        ".png")
                 }
                 draggable={"false"}
               ></img>
             </div>
           </div>
         ) : (
-            <OutsideTile
-              row={props.row}
-              col={props.col}
-              pointSum={props.pointSum}
-              bombCount={props.bombCount}
-            />
-          )}
+          <OutsideTile
+            row={props.row}
+            col={props.col}
+            pointSum={props.pointSum}
+            bombCount={props.bombCount}
+          />
+        )}
       </div>
     </div>
   );

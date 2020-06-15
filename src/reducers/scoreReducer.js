@@ -1,6 +1,6 @@
 const initialState = {
-  roundScore: 123456,
-  totalScore: 789999,
+  roundScore: 0,
+  totalScore: 0,
 };
 const scoreReducer = (state = initialState, action) => {
   return state;

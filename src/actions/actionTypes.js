@@ -1,3 +1,4 @@
 export const UPDATE_CLICKED = "UPDATE_CLICKED";
 export const FLIP_ALL = "FLIP_ALL";
 export const UPDATE_CURRENT_TILE = "UPDATE_CURRENT_TILE";
+export const UPDATE_MEMOS = "UPDATE_MEMOS";

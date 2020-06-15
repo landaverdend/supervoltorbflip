@@ -53,19 +53,6 @@
   width: 1.8rem;
 }
 
-#bombIcon {
-  position: absolute;
-  z-index: 1;
-  margin-left: 0.8rem;
-  margin-top: 0.8rem;
-  height: 1.5rem;
-  width: 1.5rem;
-}
-
-#bombIcon:hover {
-  z-index: 1;
-}
-
 .container {
   position: relative;
   width: 100%;
