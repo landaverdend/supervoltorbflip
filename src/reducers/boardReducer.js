@@ -5,6 +5,7 @@ import {
   FLIP_ALL,
   UPDATE_CURRENT_TILE,
   UPDATE_MEMOS,
+  UPDATE_GRID,
 } from "../actions/actionTypes.js";
 
 let init = generateInitialGrid(6);
@@ -67,6 +68,11 @@ const boardReducer = (state = initialState, action) => {
     let col = state.currentTile[1];
     ref[row][col].memos = action.eventInfo;
     return { ...state, grid: ref };
+  }
+
+  if (action.type === UPDATE_GRID) {
+    let newGrid = generateInitialGrid(action.value);
+    return { ...state, grid: newGrid, dimension: action.value };
   }
 
   return state;
