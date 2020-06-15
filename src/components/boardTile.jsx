@@ -65,24 +65,24 @@ const BoardTile = (props) => {
                 src={
                   checkCurrent()
                     ? require("../assets/clickedicons/clickedTileHover" +
-                        props.value +
-                        ".png")
+                      props.value +
+                      ".png")
                     : require("../assets/clickedicons/clicked" +
-                        props.value +
-                        ".png")
+                      props.value +
+                      ".png")
                 }
                 draggable={"false"}
               ></img>
             </div>
           </div>
         ) : (
-          <OutsideTile
-            row={props.row}
-            col={props.col}
-            pointSum={props.pointSum}
-            bombCount={props.bombCount}
-          />
-        )}
+            <OutsideTile
+              row={props.row}
+              col={props.col}
+              pointSum={props.pointSum}
+              bombCount={props.bombCount}
+            />
+          )}
       </div>
     </div>
   );
