@@ -8,7 +8,6 @@ import {
 } from "../actions/actionTypes.js";
 
 let init = generateInitialGrid(6);
-// console.log(init);
 const initialState = {
   dimension: 6,
   grid: init,

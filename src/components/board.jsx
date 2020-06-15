@@ -9,6 +9,7 @@ import {
   UPDATE_MEMOS,
   UPDATE_ROUND_SCORE,
   UPDATE_TOTAL_SCORE,
+  TOGGLE_MENU,
 } from "../actions/actionTypes.js";
 import BoardTile from "./boardTile.jsx";
 
@@ -31,8 +32,11 @@ const Board = (props) => {
     if (event.keyCode === 32) {
       props.setClicked();
     }
-    //esc
     if (event.keyCode === 27) {
+      props.toggleMenu();
+    }
+    //f
+    if (event.keyCode === 70) {
       props.flipAll();
     }
     if (event.keyCode === 85) {
@@ -108,6 +112,7 @@ function mapDispatchToProps(dispatch) {
     updateTotalScore: (val) => {
       dispatch({ type: UPDATE_TOTAL_SCORE, value: val });
     },
+    toggleMenu: () => dispatch({ type: TOGGLE_MENU }),
   };
 }
 
