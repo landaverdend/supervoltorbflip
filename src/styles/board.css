@@ -10,7 +10,7 @@
   justify-content: center;
   /* margin: auto; */
   padding-bottom: 15rem;
-  padding-top: 4rem;
+  padding-top: 2rem;
   grid-template-columns: repeat(var(--dimension), auto);
   grid-gap: 0.4rem;
   outline: none !important;

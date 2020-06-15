@@ -1,4 +1,27 @@
+.score-container {
+  text-align: center;
+  display: inline;
+}
+
 .score {
   background-color: white;
-  text-align: center;
+  /* padding-top: -0.2rem; */
+  padding: 1rem;
+  border: 2px solid #001a13;
+  margin-top: 0.5rem;
+  width: 21rem;
+  display: inline-flex;
+  border-radius: 5px;
+}
+
+.score-text {
+  margin-top: 0.5rem;
+  font-size: 2.25rem;
+  padding-right: 1rem;
+}
+
+.score img {
+  height: 2.5rem;
+  /* padding: 0.0125rem; */
+  width: 1.5rem;
 }

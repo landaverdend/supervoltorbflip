@@ -1,5 +1,11 @@
+@font-face {
+  font-family: DS;
+  src: url("../assets/DSFONT.ttf");
+}
+
 body {
   background-color: #1d9266;
+  font-family: DS;
 }
 
 .flex-container {
