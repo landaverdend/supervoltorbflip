@@ -39,7 +39,7 @@ const boardReducer = (state = initialState, action) => {
     for (let i = 0; i < ref.length; i++) {
       for (let j = 0; j < ref[i].length; j++) {
         if (ref[i][j].clickable) {
-          ref[i][j].clicked = !ref[i][j].clicked;
+          ref[i][j].clicked = true;
         }
       }
     }

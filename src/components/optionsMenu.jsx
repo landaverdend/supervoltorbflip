@@ -214,8 +214,8 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    roundScore: state.scoreReducer.roundScore,
-    totalScore: state.scoreReducer.totalScore,
+    roundScore: state.gameReducer.roundScore,
+    totalScore: state.gameReducer.totalScore,
     opened: state.menuReducer.opened,
     dimension: state.boardReducer.dimension,
     view: state.menuReducer.view,

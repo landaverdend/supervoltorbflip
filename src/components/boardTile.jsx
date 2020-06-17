@@ -24,6 +24,9 @@ const BoardTile = (props) => {
       }}
       onClick={() => {
         if (props.clickable) {
+          if (props.value === 0) {
+            props.endRound("bomb");
+          }
           props.setClicked();
           props.updateRoundScore(props.value);
         }
@@ -37,7 +40,6 @@ const BoardTile = (props) => {
     >
       <div className="container">
         {props.clickable ? (
-          //clickable tile
           <div className={clicked ? "card flipped" : "card"}>
             <div className={"front"}>
               <MemoIcon memoState={memos} />

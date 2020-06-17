@@ -1,10 +1,10 @@
 import React from "react";
 import Board from "./components/board.jsx";
-import ScoreBoard from "./components/scoreboard.jsx";
-import OptionsMenu from "./components/optionsMenu";
+import ScoreBoard from "./components/scoreboard";
+import DialogueModal from "./components/dialogueModal";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-import RootReducer from "./reducers/rootReducer.js";
+import RootReducer from "./reducers/rootReducer";
 import { memoHandler } from "./game/keyHandlers";
 import {
   UPDATE_CURRENT_TILE,
@@ -24,12 +24,13 @@ function App() {
       <div className={"flex-container"}>
         <ScoreBoard />
         <Board />
-        {/* <OptionsMenu /> */}
+        <DialogueModal />
       </div>
     </Provider>
   );
 }
 
+//key handlers
 const handleKeyPress = (event) => {
   event.preventDefault();
   let grid = store.getState().boardReducer.grid;

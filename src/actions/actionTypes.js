@@ -8,3 +8,4 @@ export const TOGGLE_MENU = "TOGGLE_MENU";
 export const UPDATE_GRID = "UDPATE_GRID";
 export const RESET_GRID = "RESET_GRID";
 export const CHANGE_VIEW = "CHANGE_VIEW";
+export const END_ROUND = "END_ROUND";

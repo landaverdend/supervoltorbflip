@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
 import boardReducer from "./boardReducer.js";
-import scoreReducer from "./scoreReducer.js";
+import gameReducer from "./gameReducer.js";
 import menuReducer from "./menuReducer.js";
 
 const RootReducer = combineReducers({
   boardReducer,
-  scoreReducer,
+  gameReducer,
   menuReducer,
 });
 

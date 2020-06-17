@@ -9,7 +9,7 @@ import {
   UPDATE_MEMOS,
   UPDATE_ROUND_SCORE,
   UPDATE_TOTAL_SCORE,
-  TOGGLE_MENU,
+  END_ROUND,
 } from "../actions/actionTypes.js";
 import BoardTile from "./boardTile";
 
@@ -20,35 +20,6 @@ const Board = (props) => {
   let cssDim = parseInt(htmlStyles.getPropertyValue("--dimension"));
   if (cssDim !== props.dimension)
     document.documentElement.style.setProperty("--dimension", props.dimension);
-
-  // const handleKeyPress = (event) => {
-  //   event.preventDefault();
-
-  //   //arrow key.
-  //   if (event.keyCode <= 40 && event.keyCode >= 37) {
-  //     if (props.opened) return;
-  //     props.updateCurrentTile({ type: "key", keyCode: event.keyCode });
-  //   }
-  //   //spacebar
-  //   if (event.keyCode === 32) {
-  //     props.setClicked();
-  //     props.updateRoundScore(
-  //       grid[props.currentTile[0]][props.currentTile[1]].value
-  //     );
-  //   }
-  //   if (event.keyCode === 27) {
-  //     props.toggleMenu();
-  //   }
-  //   //f
-  //   if (event.keyCode === 70) {
-  //     props.flipAll();
-  //   }
-  //   if (event.keyCode === 85) {
-  //     props.updateRoundScore(props.roundScore * 2);
-  //     props.updateTotalScore(props.totalScore * 3);
-  //   }
-  //   memoHandler(event.keyCode, grid, props.currentTile, props.updateMemos);
-  // };
 
   //helper method to map each grid value to a board tile component.
   const constructTileGrid = () => {
@@ -70,6 +41,8 @@ const Board = (props) => {
             memos={grid[i][j].memos}
             updateMemos={props.updateMemos}
             updateRoundScore={props.updateRoundScore}
+            flipAll={props.flipAll}
+            endRound={props.endRound}
           />
         );
       }
@@ -95,8 +68,8 @@ function mapStateToProps(state) {
     dimension: state.boardReducer.dimension,
     grid: state.boardReducer.grid,
     currentTile: state.boardReducer.currentTile,
-    roundScore: state.scoreReducer.roundScore,
-    totalScore: state.scoreReducer.totalScore,
+    roundScore: state.gameReducer.roundScore,
+    totalScore: state.gameReducer.totalScore,
     opened: state.menuReducer.opened,
   };
 }
@@ -117,7 +90,7 @@ function mapDispatchToProps(dispatch) {
     updateTotalScore: (val) => {
       dispatch({ type: UPDATE_TOTAL_SCORE, value: val });
     },
-    toggleMenu: () => dispatch({ type: TOGGLE_MENU }),
+    endRound: (val) => dispatch({ type: END_ROUND, value: val }),
   };
 }
 

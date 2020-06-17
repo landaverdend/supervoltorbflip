@@ -48,9 +48,9 @@ const ScoreBoard = (props) => {
 
 function mapStateToProps(state) {
   return {
-    roundScore: state.scoreReducer.roundScore,
-    totalScore: state.scoreReducer.totalScore,
-    level: state.scoreReducer.level,
+    roundScore: state.gameReducer.roundScore,
+    totalScore: state.gameReducer.totalScore,
+    level: state.gameReducer.level,
   };
 }
 export default connect(mapStateToProps)(ScoreBoard);
