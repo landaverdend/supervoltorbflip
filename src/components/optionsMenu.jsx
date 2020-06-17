@@ -17,14 +17,14 @@ const OptionsMenu = (props) => {
 
   return (
     <>
+      <i
+        className={"fa fa-cog"}
+        id="settingsIcon"
+        onClick={props.toggleMenu}
+      ></i>
       <div class={props.opened ? "modal show-modal" : "modal"}>
         <div class="modal-content">
-          <span
-            class="close-button"
-            onClick={() => {
-              props.toggleMenu();
-            }}
-          >
+          <span class="close-button" onClick={props.toggleMenu}>
             X
           </span>
           {view !== Views.DEFAULT ? (

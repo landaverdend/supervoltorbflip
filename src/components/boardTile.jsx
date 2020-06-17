@@ -25,6 +25,7 @@ const BoardTile = (props) => {
       onClick={() => {
         if (props.clickable) {
           props.setClicked();
+          props.updateRoundScore(props.value);
         }
       }}
       onMouseEnter={() => {

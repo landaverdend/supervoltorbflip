@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import React from "react";
 import "../styles/board.css";
-import { memoHandler } from "../game/keyHandlers";
+import OptionsMenu from "./optionsMenu";
 import {
   FLIP_ALL,
   UPDATE_CLICKED,
@@ -11,7 +11,7 @@ import {
   UPDATE_TOTAL_SCORE,
   TOGGLE_MENU,
 } from "../actions/actionTypes.js";
-import BoardTile from "./boardTile.jsx";
+import BoardTile from "./boardTile";
 
 const Board = (props) => {
   let grid = props.grid;
@@ -21,31 +21,35 @@ const Board = (props) => {
   if (cssDim !== props.dimension)
     document.documentElement.style.setProperty("--dimension", props.dimension);
 
-  const handleKeyPress = (event) => {
-    event.preventDefault();
+  // const handleKeyPress = (event) => {
+  //   event.preventDefault();
 
-    //arrow key.
-    if (event.keyCode <= 40 && event.keyCode >= 37) {
-      if (props.opened) return;
-      props.updateCurrentTile({ type: "key", keyCode: event.keyCode });
-    }
-    //spacebar
-    if (event.keyCode === 32) {
-      props.setClicked();
-    }
-    if (event.keyCode === 27) {
-      props.toggleMenu();
-    }
-    //f
-    if (event.keyCode === 70) {
-      props.flipAll();
-    }
-    if (event.keyCode === 85) {
-      props.updateRoundScore(props.roundScore * 2);
-      props.updateTotalScore(props.totalScore * 3);
-    }
-    memoHandler(event.keyCode, grid, props.currentTile, props.updateMemos);
-  };
+  //   //arrow key.
+  //   if (event.keyCode <= 40 && event.keyCode >= 37) {
+  //     if (props.opened) return;
+  //     props.updateCurrentTile({ type: "key", keyCode: event.keyCode });
+  //   }
+  //   //spacebar
+  //   if (event.keyCode === 32) {
+  //     props.setClicked();
+  //     props.updateRoundScore(
+  //       grid[props.currentTile[0]][props.currentTile[1]].value
+  //     );
+  //   }
+  //   if (event.keyCode === 27) {
+  //     props.toggleMenu();
+  //   }
+  //   //f
+  //   if (event.keyCode === 70) {
+  //     props.flipAll();
+  //   }
+  //   if (event.keyCode === 85) {
+  //     props.updateRoundScore(props.roundScore * 2);
+  //     props.updateTotalScore(props.totalScore * 3);
+  //   }
+  //   memoHandler(event.keyCode, grid, props.currentTile, props.updateMemos);
+  // };
+
   //helper method to map each grid value to a board tile component.
   const constructTileGrid = () => {
     let temp = [];
@@ -65,10 +69,12 @@ const Board = (props) => {
             bombCount={grid[i][j].bombCount}
             memos={grid[i][j].memos}
             updateMemos={props.updateMemos}
+            updateRoundScore={props.updateRoundScore}
           />
         );
       }
     }
+    temp.push(<OptionsMenu />);
     return temp;
   };
 
@@ -78,9 +84,6 @@ const Board = (props) => {
       draggable={"false"}
       // need to enable tab index to get key press working.
       tabIndex={0}
-      onKeyDown={(event) => {
-        handleKeyPress(event);
-      }}
     >
       {constructTileGrid()}
     </div>

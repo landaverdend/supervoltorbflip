@@ -6,7 +6,7 @@ const initialState = {
 };
 const scoreReducer = (state = initialState, action) => {
   if (action.type === UPDATE_ROUND_SCORE) {
-    return { ...state, roundScore: action.value };
+    return { ...state, roundScore: state.roundScore * action.value };
   }
   if (action.type === UPDATE_TOTAL_SCORE) {
     return { ...state, totalScore: action.value };
