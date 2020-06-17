@@ -6,3 +6,4 @@ export const UPDATE_ROUND_SCORE = "UPDATE_ROUND_SCORE";
 export const UPDATE_TOTAL_SCORE = "UPDATE_TOTAL_SCORE";
 export const TOGGLE_MENU = "TOGGLE_MENU";
 export const UPDATE_GRID = "UDPATE_GRID";
+export const RESET_GRID = "RESET_GRID";

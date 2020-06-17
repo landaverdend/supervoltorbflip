@@ -7,13 +7,15 @@ export const generateInitialGrid = (dimension) => {
     let cols = [];
     for (let j = 0; j < dimension; j++) {
       let edge = dimension - 1;
-      if (i !== edge && j !== edge)
+      if (i !== edge && j !== edge) {
+        let type = Math.floor(Math.random() * 3);
         cols.push({
-          value: TileType.BOMB,
+          value: type,
           clickable: true,
           clicked: false,
           memos: initialMemos,
         });
+      }
       // outside tile
       else
         cols.push({

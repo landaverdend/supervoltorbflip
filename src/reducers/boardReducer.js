@@ -6,6 +6,7 @@ import {
   UPDATE_CURRENT_TILE,
   UPDATE_MEMOS,
   UPDATE_GRID,
+  RESET_GRID,
 } from "../actions/actionTypes.js";
 
 let init = generateInitialGrid(6);
@@ -75,6 +76,10 @@ const boardReducer = (state = initialState, action) => {
     return { ...state, grid: newGrid, dimension: action.value };
   }
 
+  if (action.type === RESET_GRID) {
+    let newGrid = generateInitialGrid(state.dimension);
+    return { ...state, grid: newGrid };
+  }
   return state;
 };
 

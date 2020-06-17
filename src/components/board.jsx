@@ -26,6 +26,7 @@ const Board = (props) => {
 
     //arrow key.
     if (event.keyCode <= 40 && event.keyCode >= 37) {
+      if (props.opened) return;
       props.updateCurrentTile({ type: "key", keyCode: event.keyCode });
     }
     //spacebar
@@ -93,6 +94,7 @@ function mapStateToProps(state) {
     currentTile: state.boardReducer.currentTile,
     roundScore: state.scoreReducer.roundScore,
     totalScore: state.scoreReducer.totalScore,
+    opened: state.menuReducer.opened,
   };
 }
 
