@@ -9,18 +9,13 @@
   display: grid;
   justify-content: center;
   /* margin: auto; */
-  /* margin-left: auto;
-  margin-right: auto; */
+  margin-left: auto;
+  margin-right: auto;
   padding-bottom: 15rem;
   padding-top: 2rem;
   grid-template-columns: repeat(var(--dimension), auto);
   grid-gap: 0.4rem;
   outline: none !important;
-}
-
-.grid-item {
-  /* border: 1px solid black; */
-  /* perspective: 1000px; */
 }
 
 .grid-item img {

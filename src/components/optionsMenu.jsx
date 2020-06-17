@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import "../styles/options.css";
-import { TOGGLE_MENU, UPDATE_GRID, RESET_GRID } from "../actions/actionTypes";
+import {
+  TOGGLE_MENU,
+  UPDATE_GRID,
+  RESET_GRID,
+  CHANGE_VIEW,
+} from "../actions/actionTypes";
 
 const Views = {
   DEFAULT: 0,
@@ -13,14 +18,19 @@ const Views = {
 };
 
 const OptionsMenu = (props) => {
-  const [view, setView] = useState(Views.DEFAULT);
+  // const [view, setView] = useState(Views.DEFAULT);
+  let view = props.view;
+  let setView = props.setView;
 
   return (
     <>
       <i
         className={"fa fa-cog"}
         id="settingsIcon"
-        onClick={props.toggleMenu}
+        onClick={() => {
+          if (view !== Views.DEFAULT) setView(Views.DEFAULT);
+          props.toggleMenu();
+        }}
       ></i>
       <div class={props.opened ? "modal show-modal" : "modal"}>
         <div class="modal-content">
@@ -31,7 +41,7 @@ const OptionsMenu = (props) => {
             <span
               class="back-button"
               onClick={() => {
-                setView(Views.DEFAULT);
+                props.setView(Views.DEFAULT);
               }}
             >
               &larr;
@@ -198,6 +208,7 @@ function mapDispatchToProps(dispatch) {
     toggleMenu: () => dispatch({ type: TOGGLE_MENU }),
     updateGrid: (val) => dispatch({ type: UPDATE_GRID, value: val }),
     resetGrid: (val) => dispatch({ type: RESET_GRID }),
+    setView: (val) => dispatch({ type: CHANGE_VIEW, value: val }),
   };
 }
 
@@ -207,6 +218,7 @@ function mapStateToProps(state) {
     totalScore: state.scoreReducer.totalScore,
     opened: state.menuReducer.opened,
     dimension: state.boardReducer.dimension,
+    view: state.menuReducer.view,
   };
 }
 

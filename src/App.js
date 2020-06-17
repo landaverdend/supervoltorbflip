@@ -12,6 +12,7 @@ import {
   UPDATE_ROUND_SCORE,
   UPDATE_MEMOS,
   UPDATE_CLICKED,
+  CHANGE_VIEW,
 } from "./actions/actionTypes";
 import "./styles/index.css";
 
@@ -57,6 +58,8 @@ const handleKeyPress = (event) => {
 
   if (event.keyCode === 27) {
     store.dispatch({ type: TOGGLE_MENU });
+    // if (store.getState().menuReducer.view !== 0)
+    //   store.dispatch({ type: CHANGE_VIEW, value: 0 });
   }
   // //f
   // if (event.keyCode === 70) {
