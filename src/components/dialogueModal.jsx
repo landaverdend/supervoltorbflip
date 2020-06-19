@@ -1,8 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
+import "../styles/modal.css";
 
 const DialogueModal = (props) => {
-  return <div>{props.displayEndRound ? <div>you lose</div> : null}</div>;
+  return (
+    <div className={"modal"}>
+      <div class="container">
+        <div className={"modal-content animate"}>heyo</div>
+      </div>
+    </div>
+  );
 };
 
 function mapStateToProps(state) {
