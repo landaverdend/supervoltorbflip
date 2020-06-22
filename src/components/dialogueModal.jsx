@@ -4,9 +4,15 @@ import "../styles/modal.css";
 
 const DialogueModal = (props) => {
   return (
-    <div className={"modal"}>
-      <div class="container">
-        <div className={"modal-content animate"}>heyo</div>
+    <div
+      class={
+        props.displayEndRound
+          ? "dialogue-modal show-dialogue-modal"
+          : "dialogue-modal"
+      }
+    >
+      <div class="dialogue-modal-content">
+        <span className={"dialogue-text"}>{props.dialogueText} </span>
       </div>
     </div>
   );
@@ -15,6 +21,7 @@ const DialogueModal = (props) => {
 function mapStateToProps(state) {
   return {
     displayEndRound: state.gameReducer.displayEndRound,
+    dialogueText: state.gameReducer.dialogueText,
   };
 }
 

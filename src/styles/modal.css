@@ -1,0 +1,45 @@
+.dialogue-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.9);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.dialogue-modal-content {
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  width: 45rem;
+  height: 5rem;
+  border: 2px solid #001a13;
+  font-size: 3.8rem;
+  /* z-index: 10000 !important; */
+  border-radius: 1rem;
+}
+
+.show-dialogue-modal {
+  opacity: 1;
+  visibility: visible;
+  z-index: 999;
+  transform: scale(1);
+  transition: visibility 0s linear 0s, opacity 1s 1s, transform 0.5s;
+  transition-delay: 0.3s; /* this has to come after transition to work*/
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}

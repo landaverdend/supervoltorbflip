@@ -59,7 +59,7 @@
 }
 .card {
   perspective: 1000px;
-  transition: transform 0.6s;
+  transition: transform 0.5s;
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
   -o-transform-style: preserve-3d;

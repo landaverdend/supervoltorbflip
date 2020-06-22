@@ -13,6 +13,12 @@ import {
   UPDATE_MEMOS,
   UPDATE_CLICKED,
   CHANGE_VIEW,
+  END_ROUND_LOSS,
+  CHANGE_END_DIALOGUE,
+  CLOSE_DIALOGUE_BOX,
+  FLIP_ALL,
+  RESET_CLICKS,
+  RESET_GRID,
 } from "./actions/actionTypes";
 import "./styles/index.css";
 
@@ -33,12 +39,31 @@ function App() {
 //key handlers
 const handleKeyPress = (event) => {
   event.preventDefault();
-  let grid = store.getState().boardReducer.grid;
-  let currentTile = store.getState().boardReducer.currentTile;
+  let state = store.getState();
+  let endOfRound = state.gameReducer.displayEndRound;
+
+  //end of round.
+  if (endOfRound && state.gameReducer.clicks === 0) {
+    store.dispatch({ type: CHANGE_END_DIALOGUE });
+    return;
+  }
+  if (endOfRound && state.gameReducer.clicks === 1) {
+    store.dispatch({ type: CLOSE_DIALOGUE_BOX });
+    store.dispatch({ type: FLIP_ALL });
+    return;
+  }
+  if (!endOfRound && state.gameReducer.clicks === 2) {
+    store.dispatch({ type: RESET_GRID });
+    store.dispatch({ type: RESET_CLICKS });
+    return;
+  }
+
+  let grid = state.boardReducer.grid;
+  let currentTile = state.boardReducer.currentTile;
 
   //arrow key.
   if (event.keyCode <= 40 && event.keyCode >= 37) {
-    if (store.getState().menuReducer.opened) return;
+    if (state.menuReducer.opened) return;
     store.dispatch({
       type: UPDATE_CURRENT_TILE,
       eventInfo: { type: "key", keyCode: event.keyCode },
@@ -50,22 +75,15 @@ const handleKeyPress = (event) => {
     if (currentTile[0] === -1 || currentTile[1] === -1) return;
 
     let tile = grid[currentTile[0]][currentTile[1]];
-    if (!tile.clickable) return;
-
+    if (!tile.clickable) return; // this is here because you can hit space bar while moused over the outside tile. which fucks everything up.
     store.dispatch({ type: UPDATE_CLICKED });
-
+    if (tile.value === 0) store.dispatch({ type: END_ROUND_LOSS });
     store.dispatch({ type: UPDATE_ROUND_SCORE, value: tile.value });
   }
 
   if (event.keyCode === 27) {
     store.dispatch({ type: TOGGLE_MENU });
-    // if (store.getState().menuReducer.view !== 0)
-    //   store.dispatch({ type: CHANGE_VIEW, value: 0 });
   }
-  // //f
-  // if (event.keyCode === 70) {
-  //   props.flipAll();
-  // }
   let updateMemos = (eventInfo) =>
     store.dispatch({
       type: UPDATE_MEMOS,
@@ -75,6 +93,27 @@ const handleKeyPress = (event) => {
   memoHandler(event.keyCode, grid, currentTile, updateMemos);
 };
 
-document.addEventListener("keydown", handleKeyPress);
+const handleClick = (event) => {
+  let state = store.getState();
+  let endOfRound = state.gameReducer.displayEndRound;
 
+  //end of round.
+  if (endOfRound && state.gameReducer.clicks === 0) {
+    store.dispatch({ type: CHANGE_END_DIALOGUE });
+    return;
+  }
+  if (endOfRound && state.gameReducer.clicks === 1) {
+    store.dispatch({ type: CLOSE_DIALOGUE_BOX });
+    store.dispatch({ type: FLIP_ALL });
+    return;
+  }
+  if (!endOfRound && state.gameReducer.clicks === 2) {
+    store.dispatch({ type: RESET_GRID });
+    store.dispatch({ type: RESET_CLICKS });
+    return;
+  }
+};
+
+document.addEventListener("keydown", handleKeyPress);
+document.addEventListener("click", handleClick);
 export default App;

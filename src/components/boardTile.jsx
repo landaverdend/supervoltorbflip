@@ -23,10 +23,10 @@ const BoardTile = (props) => {
           props.updateMemos({ ...memos, BOMB: !props.memos.BOMB });
       }}
       onClick={() => {
+        if (props.value === 0) {
+          props.endRoundLoss();
+        }
         if (props.clickable) {
-          if (props.value === 0) {
-            props.endRound("bomb");
-          }
           props.setClicked();
           props.updateRoundScore(props.value);
         }

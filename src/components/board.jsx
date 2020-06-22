@@ -9,7 +9,7 @@ import {
   UPDATE_MEMOS,
   UPDATE_ROUND_SCORE,
   UPDATE_TOTAL_SCORE,
-  END_ROUND,
+  END_ROUND_LOSS,
 } from "../actions/actionTypes.js";
 import BoardTile from "./boardTile";
 
@@ -42,7 +42,7 @@ const Board = (props) => {
             updateMemos={props.updateMemos}
             updateRoundScore={props.updateRoundScore}
             flipAll={props.flipAll}
-            endRound={props.endRound}
+            endRoundLoss={props.endRoundLoss}
           />
         );
       }
@@ -90,7 +90,7 @@ function mapDispatchToProps(dispatch) {
     updateTotalScore: (val) => {
       dispatch({ type: UPDATE_TOTAL_SCORE, value: val });
     },
-    endRound: (val) => dispatch({ type: END_ROUND, value: val }),
+    endRoundLoss: () => dispatch({ type: END_ROUND_LOSS }),
   };
 }
 
