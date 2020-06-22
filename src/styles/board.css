@@ -11,7 +11,7 @@
   /* margin: auto; */
   margin-left: auto;
   margin-right: auto;
-  padding-bottom: 15rem;
+  padding-bottom: 10rem;
   padding-top: 2rem;
   grid-template-columns: repeat(var(--dimension), auto);
   grid-gap: 0.4rem;

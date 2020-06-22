@@ -5,6 +5,7 @@ import {
   CHANGE_END_DIALOGUE,
   CLOSE_DIALOGUE_BOX,
   RESET_CLICKS,
+  RESET_ROUND_SCORE,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -49,6 +50,10 @@ const gameReducer = (state = initialState, action) => {
 
   if (action.type === RESET_CLICKS) {
     return { ...state, clicks: 0 };
+  }
+
+  if (action.type === RESET_ROUND_SCORE) {
+    return { ...state, roundScore: 1 };
   }
 
   return state;

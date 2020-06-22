@@ -48,14 +48,19 @@ const handleKeyPress = (event) => {
     store.dispatch({ type: CHANGE_END_DIALOGUE });
     return;
   }
+  //clicked once while dialogue is up
   if (endOfRound && state.gameReducer.clicks === 1) {
     store.dispatch({ type: CLOSE_DIALOGUE_BOX });
     store.dispatch({ type: FLIP_ALL });
     return;
   }
+  //reset the board, wait a sec.
   if (!endOfRound && state.gameReducer.clicks === 2) {
-    store.dispatch({ type: RESET_GRID });
+    store.dispatch({ type: FLIP_ALL_UNCLICKED });
     store.dispatch({ type: RESET_CLICKS });
+    setTimeout(() => {
+      store.dispatch({ type: RESET_GRID });
+    }, 250);
     return;
   }
 
@@ -113,7 +118,7 @@ const handleClick = (event) => {
     store.dispatch({ type: RESET_CLICKS });
     setTimeout(() => {
       store.dispatch({ type: RESET_GRID });
-    }, 250);
+    }, 500);
     // store.dispatch({ type: RESET_GRID });
   }
 };
