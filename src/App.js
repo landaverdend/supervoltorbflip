@@ -19,6 +19,7 @@ import {
   FLIP_ALL,
   RESET_CLICKS,
   RESET_GRID,
+  FLIP_ALL_UNCLICKED,
 } from "./actions/actionTypes";
 import "./styles/index.css";
 
@@ -108,9 +109,12 @@ const handleClick = (event) => {
     return;
   }
   if (!endOfRound && state.gameReducer.clicks === 2) {
-    store.dispatch({ type: RESET_GRID });
+    store.dispatch({ type: FLIP_ALL_UNCLICKED });
     store.dispatch({ type: RESET_CLICKS });
-    return;
+    setTimeout(() => {
+      store.dispatch({ type: RESET_GRID });
+    }, 250);
+    // store.dispatch({ type: RESET_GRID });
   }
 };
 

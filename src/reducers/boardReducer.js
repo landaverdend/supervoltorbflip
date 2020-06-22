@@ -7,6 +7,7 @@ import {
   UPDATE_MEMOS,
   UPDATE_GRID,
   RESET_GRID,
+  FLIP_ALL_UNCLICKED,
 } from "../actions/actionTypes.js";
 
 let init = generateInitialGrid(6);
@@ -40,6 +41,17 @@ const boardReducer = (state = initialState, action) => {
       for (let j = 0; j < ref[i].length; j++) {
         if (ref[i][j].clickable) {
           ref[i][j].clicked = true;
+        }
+      }
+    }
+    return { ...state, grid: ref };
+  }
+
+  if (action.type === FLIP_ALL_UNCLICKED) {
+    for (let i = 0; i < ref.length; i++) {
+      for (let j = 0; j < ref[i].length; j++) {
+        if (ref[i][j].clickable) {
+          ref[i][j].clicked = false;
         }
       }
     }

@@ -6,6 +6,7 @@ import {
   UPDATE_GRID,
   RESET_GRID,
   CHANGE_VIEW,
+  FLIP_ALL_UNCLICKED,
 } from "../actions/actionTypes";
 
 const Views = {
@@ -83,7 +84,8 @@ const OptionsMenu = (props) => {
               <li>
                 <span
                   onClick={() => {
-                    props.resetGrid();
+                    props.flipToUnclicked();
+                    setTimeout(props.resetGrid, 250);
                   }}
                 >
                   Reset
@@ -209,6 +211,7 @@ function mapDispatchToProps(dispatch) {
     updateGrid: (val) => dispatch({ type: UPDATE_GRID, value: val }),
     resetGrid: (val) => dispatch({ type: RESET_GRID }),
     setView: (val) => dispatch({ type: CHANGE_VIEW, value: val }),
+    flipToUnclicked: () => dispatch({ type: FLIP_ALL_UNCLICKED }),
   };
 }
 
