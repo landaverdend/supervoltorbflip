@@ -10,8 +10,11 @@ export const UPDATE_GRID = "UDPATE_GRID";
 export const RESET_GRID = "RESET_GRID";
 export const CHANGE_VIEW = "CHANGE_VIEW";
 
+//end of round stuff
 export const CLOSE_DIALOGUE_BOX = "CLOSE_DIALOGUE_BOX";
-export const RESET_CLICKS = "RESET_CLICKS";
 export const RESET_ROUND_SCORE = "RESET_ROUND_SCORE";
 export const OPEN_DIALOGUE_BOX = "OPENDIALGOUE";
 export const TOGGLE_ROUND_INTERMISSION = "toggleroundinterm";
+export const SET_ROUND_LOSS = "SEtRoundLoss";
+export const SET_CLICKS = "SET_CLICKS";
+export const CHANGE_DIALOGUE_TEXT = "CHANGE_DIALOGUE_TEXT";

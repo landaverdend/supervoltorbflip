@@ -9,13 +9,13 @@ const Views = {
 };
 
 const initialState = {
-  opened: false,
+  menuOpened: false,
   view: 0,
 };
 
 const menuReducer = (state = initialState, action) => {
   if (action.type === TOGGLE_MENU) {
-    return { ...state, opened: !state.opened };
+    return { ...state, menuOpened: !state.menuOpened };
   }
 
   if (action.type === CHANGE_VIEW) {

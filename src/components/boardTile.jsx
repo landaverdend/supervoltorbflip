@@ -10,8 +10,24 @@ const BoardTile = (props) => {
   const col = props.col;
   const clicked = props.clicked;
   const memos = props.memos;
+
   const checkCurrent = () => {
     return props.currentTile[0] === row && props.currentTile[1] === col;
+  };
+
+  const handleClick = () => {
+    if (props.roundIntermission) {
+      console.log("nice try buddy");
+      return;
+    }
+    if (props.value === 0) {
+      props.openDialogueBox("Oh no, you get 0 coins!");
+      props.toggleRound();
+    }
+    if (props.clickable) {
+      props.setClicked();
+      props.updateRoundScore(props.value);
+    }
   };
 
   return (
@@ -22,15 +38,7 @@ const BoardTile = (props) => {
         if (props.clickable && !clicked)
           props.updateMemos({ ...memos, BOMB: !props.memos.BOMB });
       }}
-      onClick={() => {
-        if (props.value === 0) {
-          props.toggleRound();
-        }
-        if (props.clickable) {
-          props.setClicked();
-          props.updateRoundScore(props.value);
-        }
-      }}
+      onClick={() => handleClick()}
       onMouseEnter={() => {
         props.updateCurrentTile({ type: "mouse", row: row, col: col });
       }}

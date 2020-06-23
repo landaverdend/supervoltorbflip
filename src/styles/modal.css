@@ -6,6 +6,7 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   opacity: 0;
+  z-index: 999;
   visibility: hidden;
   transform: scale(1.1);
   transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
@@ -31,11 +32,9 @@
 .show-dialogue-modal {
   opacity: 1;
   visibility: visible;
-
-  z-index: 999;
   transform: scale(1);
   transition: visibility 0s linear 0s, opacity 1s 1s, transform 0.5s;
-  transition-delay: 0.3s; /* this has to come after transition to work*/
+  transition-delay: 0.25s; /* this has to come after transition to work*/
 }
 
 @keyframes typing {

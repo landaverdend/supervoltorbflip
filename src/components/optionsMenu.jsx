@@ -34,7 +34,7 @@ const OptionsMenu = (props) => {
           props.toggleMenu();
         }}
       ></i>
-      <div class={props.opened ? "modal show-modal" : "modal"}>
+      <div class={props.menuOpened ? "modal show-modal" : "modal"}>
         <div class="modal-content">
           <span class="close-button" onClick={props.toggleMenu}>
             X
@@ -222,7 +222,7 @@ function mapStateToProps(state) {
   return {
     roundScore: state.gameReducer.roundScore,
     totalScore: state.gameReducer.totalScore,
-    opened: state.menuReducer.opened,
+    menuOpened: state.menuReducer.menuOpened,
     dimension: state.boardReducer.dimension,
     view: state.menuReducer.view,
   };

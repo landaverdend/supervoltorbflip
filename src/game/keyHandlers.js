@@ -1,3 +1,14 @@
+import {
+  SET_CLICKS,
+  CHANGE_DIALOGUE_TEXT,
+  FLIP_ALL,
+  CLOSE_DIALOGUE_BOX,
+  FLIP_ALL_UNCLICKED,
+  RESET_GRID,
+  OPEN_DIALOGUE_BOX,
+  TOGGLE_ROUND_INTERMISSION,
+} from "../actions/actionTypes";
+
 const ARROW_KEYS = {
   UP: 38,
   DOWN: 40,
@@ -57,5 +68,47 @@ export const memoHandler = (keyCode, grid, currentTile, dispatchFunction) => {
   }
   if (keyCode === 51) {
     dispatchFunction({ ...memos, THREE: !memos.THREE });
+  }
+};
+
+//for when the game has dialogue open
+export const dialogueHandler = (state, dispatch, keyCode) => {
+  //any keys but arrow should advance the click state.
+  if (keyCode <= 40 && keyCode >= 37) {
+    return;
+  }
+
+  let clicks = state.gameReducer.clicks;
+  if (clicks === 0) {
+    dispatch({
+      type: CHANGE_DIALOGUE_TEXT,
+      value: "Resetting collected coins...",
+    });
+    dispatch({ type: SET_CLICKS, value: clicks + 1 });
+  }
+  if (clicks === 1) {
+    dispatch({ type: CLOSE_DIALOGUE_BOX });
+    dispatch({ type: SET_CLICKS, value: clicks + 1 });
+    setTimeout(() => {
+      dispatch({ type: FLIP_ALL });
+    }, 250);
+  }
+  if (clicks === 2) {
+    dispatch({ type: FLIP_ALL_UNCLICKED });
+    // setTimeout(dispatch({ type: RESET_GRID }), 1000);
+    dispatch({ type: SET_CLICKS, value: clicks + 1 });
+    setTimeout(() => {
+      dispatch({
+        type: OPEN_DIALOGUE_BOX,
+        value:
+          "Press any button to continue to level " + state.gameReducer.level,
+      });
+    }, 500);
+  }
+  if (clicks === 3) {
+    dispatch({ type: RESET_GRID });
+    dispatch({ type: CLOSE_DIALOGUE_BOX });
+    dispatch({ type: SET_CLICKS, value: 0 });
+    dispatch({ type: TOGGLE_ROUND_INTERMISSION });
   }
 };

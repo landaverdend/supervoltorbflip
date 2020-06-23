@@ -4,17 +4,20 @@ import {
   CLOSE_DIALOGUE_BOX,
   RESET_ROUND_SCORE,
   OPEN_DIALOGUE_BOX,
+  CHANGE_DIALOGUE_TEXT,
   TOGGLE_ROUND_INTERMISSION,
+  SET_CLICKS,
 } from "../actions/actionTypes";
 
 const initialState = {
   roundScore: 1,
   totalScore: 1,
   level: 1,
-  displayDialogueBox: false,
+  dialogueBoxOpen: false,
   roundIntermission: false,
-  dialogueText: "Oh no! You get 0 coins!",
+  roundLost: false,
   clicks: 0,
+  dialogueText: "",
 };
 
 const gameReducer = (state = initialState, action) => {
@@ -26,15 +29,27 @@ const gameReducer = (state = initialState, action) => {
   }
 
   if (action.type === OPEN_DIALOGUE_BOX) {
-    return { ...state, displayDialogueBox: true, dialogueText: action.value };
-  }
-
-  if (action.type === TOGGLE_ROUND_INTERMISSION) {
-    console.log(!state.roundIntermission);
-    return { ...state, roundIntermission: !state.roundIntermission };
+    return { ...state, dialogueBoxOpen: true, dialogueText: action.value };
   }
 
   if (action.type === CLOSE_DIALOGUE_BOX) {
+    return { ...state, dialogueBoxOpen: false };
+  }
+
+  if (action.type === CHANGE_DIALOGUE_TEXT) {
+    return { ...state, dialogueText: action.value };
+  }
+
+  if (action.type === TOGGLE_ROUND_INTERMISSION) {
+    return {
+      ...state,
+      roundIntermission: !state.roundIntermission,
+      roundLost: action.val,
+    };
+  }
+
+  if (action.type === SET_CLICKS) {
+    return { ...state, clicks: action.value };
   }
 
   if (action.type === RESET_ROUND_SCORE) {
