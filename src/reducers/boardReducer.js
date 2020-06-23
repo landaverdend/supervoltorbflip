@@ -40,7 +40,14 @@ const boardReducer = (state = initialState, action) => {
     for (let i = 0; i < ref.length; i++) {
       for (let j = 0; j < ref[i].length; j++) {
         if (ref[i][j].clickable) {
+          //set clicked to true, reset memos
           ref[i][j].clicked = true;
+          ref[i][j].memos = {
+            BOMB: false,
+            ONE: false,
+            TWO: false,
+            THREE: false,
+          };
         }
       }
     }

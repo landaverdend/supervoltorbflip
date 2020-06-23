@@ -24,7 +24,7 @@ const BoardTile = (props) => {
       }}
       onClick={() => {
         if (props.value === 0) {
-          props.endRoundLoss();
+          props.toggleRound();
         }
         if (props.clickable) {
           props.setClicked();

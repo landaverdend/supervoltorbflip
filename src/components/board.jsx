@@ -10,6 +10,7 @@ import {
   UPDATE_ROUND_SCORE,
   UPDATE_TOTAL_SCORE,
   END_ROUND_LOSS,
+  TOGGLE_ROUND_INTERMISSION,
 } from "../actions/actionTypes.js";
 import BoardTile from "./boardTile";
 
@@ -43,6 +44,7 @@ const Board = (props) => {
             updateRoundScore={props.updateRoundScore}
             flipAll={props.flipAll}
             endRoundLoss={props.endRoundLoss}
+            toggleRound={props.toggleRound}
           />
         );
       }
@@ -90,7 +92,7 @@ function mapDispatchToProps(dispatch) {
     updateTotalScore: (val) => {
       dispatch({ type: UPDATE_TOTAL_SCORE, value: val });
     },
-    endRoundLoss: () => dispatch({ type: END_ROUND_LOSS }),
+    toggleRound: () => dispatch({ type: TOGGLE_ROUND_INTERMISSION }),
   };
 }
 
