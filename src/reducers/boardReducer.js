@@ -11,11 +11,12 @@ import {
   FLIP_COLUMN,
 } from "../actions/actionTypes.js";
 
-let init = generateInitialGrid(6);
+let init = generateInitialGrid(6, 1);
 const initialState = {
   dimension: 6,
   grid: init,
   currentTile: [-1, -1],
+  level: 1,
 };
 
 const defaultMemos = {

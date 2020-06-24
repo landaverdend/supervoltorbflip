@@ -1,16 +1,42 @@
 import TileType from "./tileType.js";
+import { size6Placements } from "./pointPlacements";
 const initialMemos = { BOMB: false, ONE: false, TWO: false, THREE: false };
 
-export const generateInitialGrid = (dimension) => {
+function placePoints(grid, dimension, level) {
+  let placeableArea = dimension - 1;
+  let pointPermutation = size6Placements[1][getRandomRange(5)];
+  let placePoints = (value, amount, grid) => {
+    for (let counter = 0; counter < amount; ) {
+      let i = getRandomRange(placeableArea);
+      let j = getRandomRange(placeableArea);
+      if (grid[i][j].value === 1) {
+        grid[i][j].value = value;
+        counter++;
+      }
+    }
+  };
+
+  for (let bombs = 0; bombs < pointPermutation.bombs; bombs++) {
+    let i = getRandomRange(placeableArea);
+    let j = getRandomRange(placeableArea);
+    grid[i][j].value = 0;
+  }
+
+  placePoints(2, pointPermutation.twos, grid);
+  placePoints(3, pointPermutation.threes, grid);
+  return grid;
+}
+
+export const generateInitialGrid = (dimension, level) => {
   let rows = [];
   for (let i = 0; i < dimension; i++) {
     let cols = [];
     for (let j = 0; j < dimension; j++) {
       let edge = dimension - 1;
       if (i !== edge && j !== edge) {
-        let type = Math.floor(Math.random() * 3);
+        // let type = getRandomRange(3);
         cols.push({
-          value: type,
+          value: 1,
           clickable: true,
           clicked: false,
           memos: initialMemos,
@@ -28,8 +54,14 @@ export const generateInitialGrid = (dimension) => {
   }
 
   rows[dimension - 1].pop(); //get rid of bottom right tile.
+  rows = placePoints(rows, dimension, level);
+
   return calculateEdgeTileValues(rows);
 };
+
+function getRandomRange(num) {
+  return Math.floor(Math.random() * num);
+}
 
 //get a sum of each row/col and number of bombs.
 function calculateEdgeTileValues(arr) {
