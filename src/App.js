@@ -99,6 +99,14 @@ const handleClick = (event) => {
   let state = store.getState();
   let roundIntermission = state.gameReducer.roundIntermission;
 
+  //make it so you can leave menu if you click out of modal
+  if (state.menuReducer.menuOpened) {
+    if (
+      event.target === document.getElementsByClassName("modal show-modal")[0]
+    ) {
+      store.dispatch({ type: TOGGLE_MENU });
+    }
+  }
   if (roundIntermission) {
     dialogueHandler(state, store.dispatch);
   }

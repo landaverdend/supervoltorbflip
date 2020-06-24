@@ -41,10 +41,15 @@ const gameReducer = (state = initialState, action) => {
   }
 
   if (action.type === TOGGLE_ROUND_INTERMISSION) {
+    const newTotalScore = state.roundLost
+      ? state.totalScore
+      : state.totalScore + state.roundScore;
     return {
       ...state,
       roundIntermission: !state.roundIntermission,
       roundLost: action.val,
+      totalScore: newTotalScore,
+      roundScore: 1,
     };
   }
 

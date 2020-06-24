@@ -18,8 +18,6 @@ const ARROW_KEYS = {
 };
 
 export const arrowHandler = (row, col, keyCode, dimension) => {
-  //   let temp = currentTile.splice();
-  //   let temp = [row, col];
   if (row === -1 && col === -1) return [0, 0];
 
   switch (keyCode) {
@@ -72,22 +70,33 @@ export const memoHandler = (keyCode, grid, currentTile, dispatchFunction) => {
   }
 };
 
-function cascadeFlip(dimension, dispatch, clickedVal) {
+function cascadeFlip(dimension, dispatch, clickedVal, grid) {
   let func = (num, clickedVal) => {
     dispatch({ type: FLIP_COLUMN, value: num, clicked: clickedVal });
   };
-  for (let i = 0, timeToWait = 0; i < dimension; i++, timeToWait += 250) {
-    setTimeout(() => func(i, clickedVal), timeToWait);
+  for (let i = 0, timeToWait = 0; i < dimension; i++) {
+    if (!checkColumnFlipped(i, grid)) {
+      setTimeout(() => func(i, clickedVal), timeToWait);
+      timeToWait += 250;
+    }
   }
 }
 
-function cascadeFlipReverse(dimension, dispatch, clickedVal) {
+function cascadeFlipReverse(dimension, dispatch, clickedVal, grid) {
   let func = (num, clickedVal) => {
     dispatch({ type: FLIP_COLUMN, value: num, clicked: clickedVal });
   };
   for (let i = dimension - 1, timeToWait = 0; i >= 0; i--, timeToWait += 200) {
     setTimeout(() => func(i, clickedVal), timeToWait);
   }
+}
+
+function checkColumnFlipped(col, grid) {
+  // let flag = true;
+  for (let i = 0; i < grid.length; i++) {
+    if (grid[i][col].clickable && !grid[i][col].clicked) return false;
+  }
+  return true;
 }
 
 //for when the game has dialogue open. I apologize for hard coding it.
@@ -108,10 +117,10 @@ export const dialogueHandler = (state, dispatch, keyCode) => {
   if (clicks === 1) {
     dispatch({ type: CLOSE_DIALOGUE_BOX });
     dispatch({ type: SET_CLICKS, value: clicks + 1 });
-    cascadeFlip(dimension, dispatch, true);
+    cascadeFlip(dimension, dispatch, true, state.boardReducer.grid);
   }
   if (clicks === 2) {
-    cascadeFlipReverse(dimension, dispatch, false);
+    cascadeFlipReverse(dimension, dispatch, false, state.boardReducer.grid);
     dispatch({ type: SET_CLICKS, value: clicks + 1 });
     setTimeout(() => {
       dispatch({
