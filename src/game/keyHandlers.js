@@ -7,6 +7,7 @@ import {
   RESET_GRID,
   OPEN_DIALOGUE_BOX,
   TOGGLE_ROUND_INTERMISSION,
+  FLIP_COLUMN,
 } from "../actions/actionTypes";
 
 const ARROW_KEYS = {
@@ -71,14 +72,32 @@ export const memoHandler = (keyCode, grid, currentTile, dispatchFunction) => {
   }
 };
 
-//for when the game has dialogue open
+function cascadeFlip(dimension, dispatch, clickedVal) {
+  let func = (num, clickedVal) => {
+    dispatch({ type: FLIP_COLUMN, value: num, clicked: clickedVal });
+  };
+  for (let i = 0, timeToWait = 0; i < dimension; i++, timeToWait += 250) {
+    setTimeout(() => func(i, clickedVal), timeToWait);
+  }
+}
+
+function cascadeFlipReverse(dimension, dispatch, clickedVal) {
+  let func = (num, clickedVal) => {
+    dispatch({ type: FLIP_COLUMN, value: num, clicked: clickedVal });
+  };
+  for (let i = dimension - 1, timeToWait = 0; i >= 0; i--, timeToWait += 200) {
+    setTimeout(() => func(i, clickedVal), timeToWait);
+  }
+}
+
+//for when the game has dialogue open. I apologize for hard coding it.
 export const dialogueHandler = (state, dispatch, keyCode) => {
   //any keys but arrow should advance the click state.
   if (keyCode <= 40 && keyCode >= 37) {
     return;
   }
-
   let clicks = state.gameReducer.clicks;
+  let dimension = state.boardReducer.dimension - 1;
   if (clicks === 0) {
     dispatch({
       type: CHANGE_DIALOGUE_TEXT,
@@ -89,13 +108,10 @@ export const dialogueHandler = (state, dispatch, keyCode) => {
   if (clicks === 1) {
     dispatch({ type: CLOSE_DIALOGUE_BOX });
     dispatch({ type: SET_CLICKS, value: clicks + 1 });
-    setTimeout(() => {
-      dispatch({ type: FLIP_ALL });
-    }, 250);
+    cascadeFlip(dimension, dispatch, true);
   }
   if (clicks === 2) {
-    dispatch({ type: FLIP_ALL_UNCLICKED });
-    // setTimeout(dispatch({ type: RESET_GRID }), 1000);
+    cascadeFlipReverse(dimension, dispatch, false);
     dispatch({ type: SET_CLICKS, value: clicks + 1 });
     setTimeout(() => {
       dispatch({

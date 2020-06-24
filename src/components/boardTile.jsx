@@ -17,9 +17,9 @@ const BoardTile = (props) => {
 
   const handleClick = () => {
     if (props.roundIntermission) {
-      console.log("nice try buddy");
       return;
     }
+
     if (props.value === 0) {
       props.openDialogueBox("Oh no, you get 0 coins!");
       props.toggleRound();

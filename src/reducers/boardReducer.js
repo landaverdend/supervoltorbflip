@@ -8,6 +8,7 @@ import {
   UPDATE_GRID,
   RESET_GRID,
   FLIP_ALL_UNCLICKED,
+  FLIP_COLUMN,
 } from "../actions/actionTypes.js";
 
 let init = generateInitialGrid(6);
@@ -15,6 +16,13 @@ const initialState = {
   dimension: 6,
   grid: init,
   currentTile: [-1, -1],
+};
+
+const defaultMemos = {
+  BOMB: false,
+  ONE: false,
+  TWO: false,
+  THREE: false,
 };
 
 const boardReducer = (state = initialState, action) => {
@@ -27,12 +35,7 @@ const boardReducer = (state = initialState, action) => {
     let curL = state.currentTile[1];
     if (curR === -1 || curL === -1) return state;
     ref[curR][curL].clicked = true;
-    ref[curR][curL].memos = {
-      BOMB: false,
-      ONE: false,
-      TWO: false,
-      THREE: false,
-    };
+    ref[curR][curL].memos = defaultMemos;
     return { ...state, grid: ref };
   }
 
@@ -42,12 +45,7 @@ const boardReducer = (state = initialState, action) => {
         if (ref[i][j].clickable) {
           //set clicked to true, reset memos
           ref[i][j].clicked = true;
-          ref[i][j].memos = {
-            BOMB: false,
-            ONE: false,
-            TWO: false,
-            THREE: false,
-          };
+          ref[i][j].memos = defaultMemos;
         }
       }
     }
@@ -60,6 +58,17 @@ const boardReducer = (state = initialState, action) => {
         if (ref[i][j].clickable) {
           ref[i][j].clicked = false;
         }
+      }
+    }
+    return { ...state, grid: ref };
+  }
+
+  if (action.type === FLIP_COLUMN) {
+    let c = action.value; //column you want to flip.
+    for (let i = 0; i < ref.length; i++) {
+      if (ref[i][c].clickable) {
+        ref[i][c].clicked = action.clicked;
+        ref[i][c].memos = action.clicked ? ref[i][c].memos : defaultMemos;
       }
     }
     return { ...state, grid: ref };

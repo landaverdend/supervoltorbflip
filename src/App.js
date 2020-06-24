@@ -14,6 +14,7 @@ import {
   UPDATE_CLICKED,
   TOGGLE_ROUND_INTERMISSION,
   OPEN_DIALOGUE_BOX,
+  FLIP_COLUMN,
 } from "./actions/actionTypes";
 import "./styles/index.css";
 
@@ -35,9 +36,19 @@ function App() {
 const handleKeyPress = (event) => {
   event.preventDefault();
   let state = store.getState();
-  let roundIntermission = state.gameReducer.roundIntermission;
 
-  if (roundIntermission) {
+  if (event.keyCode === 76) {
+    // let func = (num) => {
+    //   store.dispatch({ type: FLIP_COLUMN, value: num });
+    // };
+    // setTimeout(() => func(0), 0);
+    // setTimeout(() => func(1), 250);
+    // setTimeout(() => func(2), 500);
+    // setTimeout(() => func(3), 750);
+    // setTimeout(() => func(4), 1000);
+  }
+
+  if (state.gameReducer.roundIntermission) {
     dialogueHandler(state, store.dispatch, event.keyCode);
     return;
   }
