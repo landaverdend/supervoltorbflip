@@ -8,6 +8,7 @@ import {
   OPEN_DIALOGUE_BOX,
   TOGGLE_ROUND_INTERMISSION,
   FLIP_COLUMN,
+  UPDATE_LEVEL,
 } from "../actions/actionTypes";
 
 const ARROW_KEYS = {
@@ -122,11 +123,19 @@ export const dialogueHandler = (state, dispatch, keyCode) => {
   if (clicks === 2) {
     cascadeFlipReverse(dimension, dispatch, false, state.boardReducer.grid);
     dispatch({ type: SET_CLICKS, value: clicks + 1 });
+    let level = state.boardReducer.level;
+    if (state.gameReducer.roundLost) {
+      console.log("lost");
+      level = level - 1 === 0 ? 1 : level - 1;
+    } else {
+      console.log("won");
+      level = level + 1 === 9 ? 8 : level + 1;
+    }
+    dispatch({ type: UPDATE_LEVEL, value: level });
     setTimeout(() => {
       dispatch({
         type: OPEN_DIALOGUE_BOX,
-        value:
-          "Press any button to continue to level " + state.gameReducer.level,
+        value: "Press any button to continue to level " + level,
       });
     }, 500);
   }

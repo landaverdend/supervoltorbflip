@@ -10,7 +10,7 @@ const BoardTile = (props) => {
   const col = props.col;
   const clicked = props.clicked;
   const memos = props.memos;
-
+  // console.log(props.maxRoundPoints);
   const checkCurrent = () => {
     return props.currentTile[0] === row && props.currentTile[1] === col;
   };
@@ -22,11 +22,17 @@ const BoardTile = (props) => {
 
     if (props.value === 0) {
       props.openDialogueBox("Oh no, you get 0 coins!");
-      props.toggleRound();
+      props.toggleRound(true);
     }
     if (props.clickable) {
       props.setClicked();
       props.updateRoundScore(props.value);
+      // console.log("after " + props.roundScore * props.value);
+
+      if (props.roundScore * props.value === props.maxRoundPoints) {
+        props.openDialogueBox("You win! YOU ARE SO SMART!!!");
+        props.toggleRound(false);
+      }
     }
   };
 

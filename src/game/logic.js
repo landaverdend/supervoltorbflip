@@ -16,15 +16,12 @@ function placePoints(grid, dimension, level) {
     }
   };
 
-  for (let bombs = 0; bombs < pointPermutation.bombs; bombs++) {
-    let i = getRandomRange(placeableArea);
-    let j = getRandomRange(placeableArea);
-    grid[i][j].value = 0;
-  }
-
+  placePoints(0, pointPermutation.bombs, grid);
   placePoints(2, pointPermutation.twos, grid);
   placePoints(3, pointPermutation.threes, grid);
-  return grid;
+  let maxRoundPoints =
+    Math.pow(2, pointPermutation.twos) * Math.pow(3, pointPermutation.threes);
+  return { grid: grid, maxRoundPoints: maxRoundPoints };
 }
 
 export const generateInitialGrid = (dimension, level) => {
@@ -54,9 +51,13 @@ export const generateInitialGrid = (dimension, level) => {
   }
 
   rows[dimension - 1].pop(); //get rid of bottom right tile.
-  rows = placePoints(rows, dimension, level);
-
-  return calculateEdgeTileValues(rows);
+  let boardInfo = placePoints(rows, dimension, level);
+  rows = boardInfo.grid;
+  // console.log(boardInfo.maxRoundPoints);
+  return {
+    grid: calculateEdgeTileValues(rows),
+    maxRoundPoints: boardInfo.maxRoundPoints,
+  };
 };
 
 function getRandomRange(num) {

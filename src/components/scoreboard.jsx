@@ -50,7 +50,7 @@ function mapStateToProps(state) {
   return {
     roundScore: state.gameReducer.roundScore,
     totalScore: state.gameReducer.totalScore,
-    level: state.gameReducer.level,
+    level: state.boardReducer.level,
   };
 }
 export default connect(mapStateToProps)(ScoreBoard);

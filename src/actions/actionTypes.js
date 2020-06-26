@@ -10,6 +10,7 @@ export const TOGGLE_MENU = "TOGGLE_MENU";
 export const UPDATE_GRID = "UDPATE_GRID";
 export const RESET_GRID = "RESET_GRID";
 export const CHANGE_VIEW = "CHANGE_VIEW";
+export const UPDATE_LEVEL = "UPDATELEVEL";
 
 //end of round stuff
 export const CLOSE_DIALOGUE_BOX = "CLOSE_DIALOGUE_BOX";

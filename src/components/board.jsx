@@ -9,7 +9,6 @@ import {
   UPDATE_MEMOS,
   UPDATE_ROUND_SCORE,
   UPDATE_TOTAL_SCORE,
-  END_ROUND_LOSS,
   TOGGLE_ROUND_INTERMISSION,
   OPEN_DIALOGUE_BOX,
 } from "../actions/actionTypes.js";
@@ -47,6 +46,8 @@ const Board = (props) => {
             openDialogueBox={props.openDialogueBox}
             toggleRound={props.toggleRound}
             roundIntermission={props.roundIntermission}
+            roundScore={props.roundScore}
+            maxRoundPoints={props.maxRoundPoints}
           />
         );
       }
@@ -76,6 +77,7 @@ function mapStateToProps(state) {
     totalScore: state.gameReducer.totalScore,
     menuOpened: state.menuReducer.menuOpened,
     roundIntermission: state.gameReducer.roundIntermission,
+    maxRoundPoints: state.boardReducer.maxRoundPoints,
   };
 }
 
@@ -95,7 +97,8 @@ function mapDispatchToProps(dispatch) {
     updateTotalScore: (val) => {
       dispatch({ type: UPDATE_TOTAL_SCORE, value: val });
     },
-    toggleRound: () => dispatch({ type: TOGGLE_ROUND_INTERMISSION }),
+    toggleRound: (val) =>
+      dispatch({ type: TOGGLE_ROUND_INTERMISSION, value: val }),
     openDialogueBox: (val) => dispatch({ type: OPEN_DIALOGUE_BOX, value: val }),
   };
 }

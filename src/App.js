@@ -78,7 +78,7 @@ const handleKeyPress = (event) => {
         type: OPEN_DIALOGUE_BOX,
         value: "Oh no, you get 0 coins!",
       });
-      store.dispatch({ type: TOGGLE_ROUND_INTERMISSION });
+      store.dispatch({ type: TOGGLE_ROUND_INTERMISSION, value: true });
     }
     store.dispatch({ type: UPDATE_ROUND_SCORE, value: tile.value });
   }

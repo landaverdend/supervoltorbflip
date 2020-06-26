@@ -9,14 +9,18 @@ import {
   RESET_GRID,
   FLIP_ALL_UNCLICKED,
   FLIP_COLUMN,
+  UPDATE_LEVEL,
 } from "../actions/actionTypes.js";
 
-let init = generateInitialGrid(6, 1);
+let boardInfo = generateInitialGrid(6, 1);
+let init = boardInfo.grid;
+let initialRoundPoints = boardInfo.maxRoundPoints;
 const initialState = {
   dimension: 6,
   grid: init,
   currentTile: [-1, -1],
   level: 1,
+  maxRoundPoints: initialRoundPoints,
 };
 
 const defaultMemos = {
@@ -101,13 +105,27 @@ const boardReducer = (state = initialState, action) => {
   }
 
   if (action.type === UPDATE_GRID) {
-    let newGrid = generateInitialGrid(action.value);
-    return { ...state, grid: newGrid, dimension: action.value };
+    let boardInfo = generateInitialGrid(action.value, state.level);
+    // let newGrid = generateInitialGrid(action.value);
+    return {
+      ...state,
+      grid: boardInfo.grid,
+      dimension: action.value,
+      maxRoundPoints: boardInfo.maxRoundPoints,
+    };
+  }
+
+  if (action.type === UPDATE_LEVEL) {
+    return { ...state, level: action.value };
   }
 
   if (action.type === RESET_GRID) {
-    let newGrid = generateInitialGrid(state.dimension);
-    return { ...state, grid: newGrid };
+    let boardInfo = generateInitialGrid(state.dimension, state.level);
+    return {
+      ...state,
+      grid: boardInfo.grid,
+      maxRoundPoints: boardInfo.maxRoundPoints,
+    };
   }
   return state;
 };

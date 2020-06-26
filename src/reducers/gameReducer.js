@@ -11,8 +11,8 @@ import {
 
 const initialState = {
   roundScore: 1,
-  totalScore: 1,
-  level: 1,
+  totalScore: 0,
+  // level: 1,
   dialogueBoxOpen: false,
   roundIntermission: false,
   roundLost: false,
@@ -41,13 +41,14 @@ const gameReducer = (state = initialState, action) => {
   }
 
   if (action.type === TOGGLE_ROUND_INTERMISSION) {
-    const newTotalScore = state.roundLost
+    //action.value here is the new value for roundLost
+    const newTotalScore = action.value
       ? state.totalScore
       : state.totalScore + state.roundScore;
     return {
       ...state,
       roundIntermission: !state.roundIntermission,
-      roundLost: action.val,
+      roundLost: action.value,
       totalScore: newTotalScore,
       roundScore: 1,
     };
