@@ -5,9 +5,10 @@
 - add win state at end of game.
 - make board size buttons prettier
 - add sound effects?
-- on round end, transfer round points to total points.
 
 **COMPLETE**
+
+- on round end, transfer round points to total points.
 
 - have reset button clear round score.
 - extra transition for dialogue box after round is over, have it be generic for both possible states.

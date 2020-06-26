@@ -29,6 +29,7 @@ const Board = (props) => {
       for (let j = 0; j < grid[i].length; j++) {
         temp.push(
           <BoardTile
+            key={i + " " + j}
             row={i}
             col={j} //indices of this tile
             value={grid[i][j].value} //value of tile.
@@ -52,7 +53,7 @@ const Board = (props) => {
         );
       }
     }
-    temp.push(<OptionsMenu />);
+    temp.push(<OptionsMenu key={"options"} />);
     return temp;
   };
 

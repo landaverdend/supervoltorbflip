@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import MemoIcon from "./memoIcon";
 import OutsideTile from "./outsideTile";
 
@@ -27,7 +27,6 @@ const BoardTile = (props) => {
     if (props.clickable) {
       props.setClicked();
       props.updateRoundScore(props.value);
-      // console.log("after " + props.roundScore * props.value);
 
       if (props.roundScore * props.value === props.maxRoundPoints) {
         props.openDialogueBox("You win! YOU ARE SO SMART!!!");
@@ -63,6 +62,7 @@ const BoardTile = (props) => {
                     ? require("../assets/tileHover.png")
                     : require("../assets/tile.png")
                 }
+                alt={""}
                 draggable={"false"}
               ></img>
             </div>
@@ -77,6 +77,7 @@ const BoardTile = (props) => {
                         props.value +
                         ".png")
                 }
+                alt={""}
                 draggable={"false"}
               ></img>
             </div>

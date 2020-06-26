@@ -1,12 +1,4 @@
 import { TOGGLE_MENU, CHANGE_VIEW } from "../actions/actionTypes";
-const Views = {
-  DEFAULT: 0,
-  ABOUT: 1,
-  RULES: 2,
-  OPTIONS: 3,
-  CONTROLS: 4,
-  RESET: 5,
-};
 
 const initialState = {
   menuOpened: false,

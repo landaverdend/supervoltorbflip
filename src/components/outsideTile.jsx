@@ -5,8 +5,10 @@ const OutsideTile = (props) => {
   //digit one corresponds to the tens place.
   let tens;
   let ones;
-  props.pointSum < 10 ? tens = 0 : tens = pointString.charAt(0);
-  props.pointSum < 10 ? ones = pointString.charAt(0) : ones = pointString.charAt(1);
+  props.pointSum < 10 ? (tens = 0) : (tens = pointString.charAt(0));
+  props.pointSum < 10
+    ? (ones = pointString.charAt(0))
+    : (ones = pointString.charAt(1));
   return (
     <>
       <img
@@ -19,14 +21,16 @@ const OutsideTile = (props) => {
       <img
         id="digitOne"
         src={require("../assets/outsideCount/count" + ones + ".png")}
+        alt={""}
       ></img>
       <img
         id="digitTwo"
-        src={require("../assets/outsideCount/count" + tens + ".png")}>
-      </img>
+        src={require("../assets/outsideCount/count" + tens + ".png")}
+      ></img>
       <img
         id="bombCount"
         src={require("../assets/outsideCount/count" + props.bombCount + ".png")}
+        alt={""}
       ></img>
     </>
   );

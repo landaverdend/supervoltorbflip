@@ -1,9 +1,7 @@
 import {
   SET_CLICKS,
   CHANGE_DIALOGUE_TEXT,
-  FLIP_ALL,
   CLOSE_DIALOGUE_BOX,
-  FLIP_ALL_UNCLICKED,
   RESET_GRID,
   OPEN_DIALOGUE_BOX,
   TOGGLE_ROUND_INTERMISSION,
@@ -33,6 +31,8 @@ export const arrowHandler = (row, col, keyCode, dimension) => {
       break;
     case ARROW_KEYS.RIGHT:
       col++;
+      break;
+    default:
       break;
   }
   let edge = dimension - 2;
@@ -108,6 +108,8 @@ export const dialogueHandler = (state, dispatch, keyCode) => {
   }
   let clicks = state.gameReducer.clicks;
   let dimension = state.boardReducer.dimension - 1;
+
+  //open dialogue box.
   if (clicks === 0) {
     dispatch({
       type: CHANGE_DIALOGUE_TEXT,
@@ -115,20 +117,21 @@ export const dialogueHandler = (state, dispatch, keyCode) => {
     });
     dispatch({ type: SET_CLICKS, value: clicks + 1 });
   }
+  //close the dialogue box, flip everything over.
   if (clicks === 1) {
     dispatch({ type: CLOSE_DIALOGUE_BOX });
     dispatch({ type: SET_CLICKS, value: clicks + 1 });
     cascadeFlip(dimension, dispatch, true, state.boardReducer.grid);
   }
+
+  //before the animation to return to unclicked
   if (clicks === 2) {
     cascadeFlipReverse(dimension, dispatch, false, state.boardReducer.grid);
     dispatch({ type: SET_CLICKS, value: clicks + 1 });
     let level = state.boardReducer.level;
     if (state.gameReducer.roundLost) {
-      console.log("lost");
       level = level - 1 === 0 ? 1 : level - 1;
     } else {
-      console.log("won");
       level = level + 1 === 9 ? 8 : level + 1;
     }
     dispatch({ type: UPDATE_LEVEL, value: level });
@@ -139,6 +142,8 @@ export const dialogueHandler = (state, dispatch, keyCode) => {
       });
     }, 500);
   }
+
+  //Close the dialogue box and start the next round.
   if (clicks === 3) {
     dispatch({ type: RESET_GRID });
     dispatch({ type: CLOSE_DIALOGUE_BOX });

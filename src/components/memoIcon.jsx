@@ -9,23 +9,33 @@ const MemoIcon = (props) => {
         <img
           id="bombIcon"
           src={require("../assets/memoIcons/memoBomb.png")}
+          alt={""}
         ></img>
       ) : (
         ""
       )}
       {memos.ONE ? (
-        <img id="oneIcon" src={require("../assets/memoIcons/memo1.png")}></img>
+        <img
+          id="oneIcon"
+          alt={""}
+          src={require("../assets/memoIcons/memo1.png")}
+        ></img>
       ) : (
         ""
       )}
       {memos.TWO ? (
-        <img id="twoIcon" src={require("../assets/memoIcons/memo2.png")}></img>
+        <img
+          id="twoIcon"
+          alt={""}
+          src={require("../assets/memoIcons/memo2.png")}
+        ></img>
       ) : (
         ""
       )}
       {memos.THREE ? (
         <img
           id="threeIcon"
+          alt={""}
           src={require("../assets/memoIcons/memo3.png")}
         ></img>
       ) : (

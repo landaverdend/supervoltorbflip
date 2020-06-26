@@ -14,7 +14,7 @@ import {
   UPDATE_CLICKED,
   TOGGLE_ROUND_INTERMISSION,
   OPEN_DIALOGUE_BOX,
-  FLIP_COLUMN,
+  UPDATE_TOTAL_SCORE,
 } from "./actions/actionTypes";
 import "./styles/index.css";
 
@@ -36,17 +36,6 @@ function App() {
 const handleKeyPress = (event) => {
   event.preventDefault();
   let state = store.getState();
-
-  if (event.keyCode === 76) {
-    // let func = (num) => {
-    //   store.dispatch({ type: FLIP_COLUMN, value: num });
-    // };
-    // setTimeout(() => func(0), 0);
-    // setTimeout(() => func(1), 250);
-    // setTimeout(() => func(2), 500);
-    // setTimeout(() => func(3), 750);
-    // setTimeout(() => func(4), 1000);
-  }
 
   if (state.gameReducer.roundIntermission) {
     dialogueHandler(state, store.dispatch, event.keyCode);
@@ -72,7 +61,9 @@ const handleKeyPress = (event) => {
 
     let tile = grid[currentTile[0]][currentTile[1]];
     if (!tile.clickable) return; // this is here because you can hit space bar while moused over the outside tile. which fucks everything up.
+
     store.dispatch({ type: UPDATE_CLICKED });
+    store.dispatch({ type: UPDATE_ROUND_SCORE, value: tile.value });
     if (tile.value === 0) {
       store.dispatch({
         type: OPEN_DIALOGUE_BOX,
@@ -80,7 +71,17 @@ const handleKeyPress = (event) => {
       });
       store.dispatch({ type: TOGGLE_ROUND_INTERMISSION, value: true });
     }
-    store.dispatch({ type: UPDATE_ROUND_SCORE, value: tile.value });
+
+    const curScore = state.gameReducer.roundScore * tile.value;
+    if (curScore === state.boardReducer.maxRoundPoints) {
+      store.dispatch({
+        type: OPEN_DIALOGUE_BOX,
+        value: "You win! YOU ARE SO SMART!!!",
+      });
+      store.dispatch({ type: UPDATE_TOTAL_SCORE, value: curScore });
+
+      store.dispatch({ type: TOGGLE_ROUND_INTERMISSION, value: true });
+    }
   }
 
   if (event.keyCode === 27) {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import "../styles/scoreboard.css";
 
@@ -16,9 +16,11 @@ const ScoreBoard = (props) => {
     for (let i = 0; i < 6; i++) {
       imageArray.push(
         <img
+          key={"image" + i}
           src={require("../assets/scoreboard/score" +
             stringFormat.charAt(i) +
             ".png")}
+          alt={""}
         ></img>
       );
     }
@@ -31,6 +33,7 @@ const ScoreBoard = (props) => {
         <div className="score-text">Current Level:</div>
         <img
           src={require("../assets/scoreboard/score" + props.level + ".png")}
+          alt={""}
         ></img>
       </div>
       <div className={"score"} id={"score1"}>

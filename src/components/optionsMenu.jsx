@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import "../styles/options.css";
 import {
@@ -34,14 +34,14 @@ const OptionsMenu = (props) => {
           props.toggleMenu();
         }}
       ></i>
-      <div class={props.menuOpened ? "modal show-modal" : "modal"}>
-        <div class="modal-content">
-          <span class="close-button" onClick={props.toggleMenu}>
+      <div className={props.menuOpened ? "modal show-modal" : "modal"}>
+        <div className="modal-content">
+          <span className="close-button" onClick={props.toggleMenu}>
             X
           </span>
           {view !== Views.DEFAULT ? (
             <span
-              class="back-button"
+              className="back-button"
               onClick={() => {
                 props.setView(Views.DEFAULT);
               }}
@@ -107,6 +107,7 @@ const OptionsMenu = (props) => {
                         onClick={() => {
                           if (props.dimension - 1 > 3) {
                             props.updateGrid(props.dimension - 1);
+                            props.resetRoundScore();
                           }
                         }}
                       >
@@ -117,6 +118,7 @@ const OptionsMenu = (props) => {
                         onClick={() => {
                           if (props.dimension + 1 < 11) {
                             props.updateGrid(props.dimension + 1);
+                            props.resetRoundScore();
                           }
                         }}
                       >
@@ -156,6 +158,7 @@ const OptionsMenu = (props) => {
                   <img
                     id="arrows"
                     src={require("../assets/menuIcons/arrows.png")}
+                    alt={""}
                   ></img>
                   <div>use the arrow keys or cursor to select a tile. </div>
                 </li>
@@ -163,6 +166,7 @@ const OptionsMenu = (props) => {
                   <img
                     id="enter"
                     src={require("../assets/menuIcons/enter.png")}
+                    alt={""}
                   ></img>
                   <div>the spacebar, mouse, and enter will flip tiles </div>
                 </li>
@@ -170,6 +174,7 @@ const OptionsMenu = (props) => {
                   <img
                     id="keys"
                     src={require("../assets/menuIcons/keys.png")}
+                    alt={""}
                   ></img>
                   <div>the 1, 2, 3 keys can be used to mark tiles.</div>
                 </li>
@@ -177,6 +182,7 @@ const OptionsMenu = (props) => {
                   <img
                     id="tilde"
                     src={require("../assets/menuIcons/tilde.png")}
+                    alt={""}
                   ></img>
                   <div>the tilde key can be used to mark tiles as a bomb.</div>
                 </li>

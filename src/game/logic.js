@@ -4,7 +4,7 @@ const initialMemos = { BOMB: false, ONE: false, TWO: false, THREE: false };
 
 function placePoints(grid, dimension, level) {
   let placeableArea = dimension - 1;
-  let pointPermutation = size6Placements[1][getRandomRange(5)];
+  let pointPermutation = size6Placements[level][getRandomRange(5)];
   let placePoints = (value, amount, grid) => {
     for (let counter = 0; counter < amount; ) {
       let i = getRandomRange(placeableArea);
