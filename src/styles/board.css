@@ -16,6 +16,7 @@
   grid-template-columns: repeat(var(--dimension), auto);
   grid-gap: 0.4rem;
   outline: none !important;
+  user-select: none;
 }
 
 .grid-item img {
