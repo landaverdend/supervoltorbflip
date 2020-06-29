@@ -25,6 +25,7 @@ const OutsideTile = (props) => {
       ></img>
       <img
         id="digitTwo"
+        alt={""}
         src={require("../assets/outsideCount/count" + tens + ".png")}
       ></img>
       <img

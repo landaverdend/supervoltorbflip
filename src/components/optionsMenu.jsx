@@ -116,7 +116,7 @@ const OptionsMenu = (props) => {
                       {props.dimension - 1}
                       <button
                         onClick={() => {
-                          if (props.dimension + 1 < 11) {
+                          if (props.dimension + 1 < 10) {
                             props.updateGrid(props.dimension + 1);
                             props.resetRoundScore();
                           }
