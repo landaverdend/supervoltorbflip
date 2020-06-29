@@ -12,14 +12,16 @@ import {
   UPDATE_LEVEL,
 } from "../actions/actionTypes.js";
 
-let boardInfo = generateInitialGrid(6, 1);
-let init = boardInfo.grid;
-let initialRoundPoints = boardInfo.maxRoundPoints;
+const initialLevel = 1;
+const initialDimension = 8;
+const boardInfo = generateInitialGrid(initialDimension, initialLevel);
+const init = boardInfo.grid;
+const initialRoundPoints = boardInfo.maxRoundPoints;
 const initialState = {
-  dimension: 6,
+  dimension: initialDimension,
   grid: init,
   currentTile: [-1, -1],
-  level: 1,
+  level: initialLevel,
   maxRoundPoints: initialRoundPoints,
 };
 

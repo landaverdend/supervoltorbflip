@@ -8,12 +8,12 @@ const ScoreBoard = (props) => {
     while (s.length < size) s = "0" + s;
     return s;
   };
-  let formattedRS = padNumber(props.roundScore, 6);
-  let formattedTS = padNumber(props.totalScore, 6);
+  let formattedRS = padNumber(props.roundScore, 7);
+  let formattedTS = padNumber(props.totalScore, 7);
 
   const toImageArray = (stringFormat) => {
     let imageArray = [];
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 7; i++) {
       imageArray.push(
         <img
           key={"image" + i}

@@ -24,6 +24,15 @@ function placePoints(grid, dimension, level) {
   placePoints(3, pointPermutation.threes, grid);
   let maxRoundPoints =
     Math.pow(2, pointPermutation.twos) * Math.pow(3, pointPermutation.threes);
+
+  if (pointPermutation.fours !== undefined) {
+    placePoints(4, pointPermutation.fours, grid);
+    maxRoundPoints *= Math.pow(4, pointPermutation.fours);
+  }
+  if (pointPermutation.fives !== undefined) {
+    placePoints(5, pointPermutation.fives, grid);
+    maxRoundPoints *= Math.pow(5, pointPermutation.fives);
+  }
   return { grid: grid, maxRoundPoints: maxRoundPoints };
 }
 
