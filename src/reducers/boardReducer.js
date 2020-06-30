@@ -13,10 +13,11 @@ import {
 } from "../actions/actionTypes.js";
 
 const initialLevel = 1;
-const initialDimension = 8;
+const initialDimension = 6;
 const boardInfo = generateInitialGrid(initialDimension, initialLevel);
 const init = boardInfo.grid;
 const initialRoundPoints = boardInfo.maxRoundPoints;
+
 const initialState = {
   dimension: initialDimension,
   grid: init,

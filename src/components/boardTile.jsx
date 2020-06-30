@@ -21,7 +21,7 @@ const BoardTile = (props) => {
     }
 
     if (props.value === 0) {
-      // return;
+      return;
       props.openDialogueBox("Oh no, you get 0 coins!");
       props.toggleRound(true);
     }

@@ -208,69 +208,40 @@ const size7Placements = {
 
 const size8Placements = {
   //12%-20% values and 25% bombs
-  1: [
-    { twos: 5, threes: 2, fours: 1, bombs: 12 },
-    { twos: 3, threes: 3, fours: 2, bombs: 12 },
-    { twos: 6, threes: 1, fours: 2, bombs: 12 },
-    { twos: 6, threes: 3, fours: 1, bombs: 12 },
-    { twos: 5, threes: 2, fours: 2, bombs: 12 },
-  ],
+  1: [{ twos: 5, threes: 2, fours: 1, bombs: 12 }], //1152
   //16%-24% values and 28% bombs
-  2: [
-    { twos: 5, threes: 2, fours: 1, bombs: 14 },
-    { twos: 5, threes: 4, fours: 3, bombs: 14 },
-    { twos: 6, threes: 1, fours: 2, bombs: 14 },
-    { twos: 6, threes: 3, fours: 1, bombs: 14 },
-    { twos: 5, threes: 2, fours: 2, bombs: 14 },
-  ],
+  2: [{ twos: 6, threes: 3, fours: 1, bombs: 14 }], //6912
   // 20%-28% values and 32% bombs
-  3: [
-    { twos: 3, threes: 4, bombs: 12 },
-    { twos: 8, threes: 2, bombs: 12 },
-    { twos: 5, threes: 3, bombs: 12 },
-    { twos: 2, threes: 5, bombs: 12 },
-    { twos: 8, threes: 2, bombs: 12 },
-  ],
+  3: [{ twos: 5, threes: 3, fours: 2, bombs: 15 }], //13824
   // 20%-32% values and 40% bombs
-  4: [
-    { twos: 4, threes: 4, bombs: 14 },
-    { twos: 0, threes: 7, bombs: 14 },
-    { twos: 9, threes: 1, bombs: 14 },
-    { twos: 8, threes: 4, bombs: 14 },
-    { twos: 4, threes: 6, bombs: 14 },
-  ],
+  4: [{ twos: 6, threes: 4, fours: 2, bombs: 16 }], //82944
   // 24% - 36% values and 40% bombs
-  5: [
-    { twos: 9, threes: 3, bombs: 14 },
-    { twos: 6, threes: 5, bombs: 14 },
-    { twos: 3, threes: 6, bombs: 14 },
-    { twos: 10, threes: 3, bombs: 14 },
-    { twos: 8, threes: 4, bombs: 14 },
-  ],
+  5: [{ twos: 7, threes: 3, fours: 3, bombs: 18 }], //221184
   // 24% - 36% values and 40% bombs
-  6: [
-    { twos: 9, threes: 3, bombs: 14 },
-    { twos: 6, threes: 5, bombs: 14 },
-    { twos: 3, threes: 6, bombs: 14 },
-    { twos: 10, threes: 3, bombs: 14 },
-    { twos: 8, threes: 4, bombs: 14 },
-  ],
+  6: [{ twos: 10, threes: 3, fours: 2, bombs: 18 }], //442368
   // 28% - 40% values and 40% bombs
-  7: [
-    { twos: 3, threes: 7, bombs: 15 },
-    { twos: 10, threes: 4, bombs: 15 },
-    { twos: 8, threes: 4, bombs: 15 },
-    { twos: 5, threes: 6, bombs: 15 },
-    { twos: 9, threes: 6, bombs: 15 },
-  ],
+  7: [{ twos: 10, threes: 3, fours: 2, bombs: 18 }],
   // 28% - 40% values and 40% bombs
-  8: [
-    { twos: 3, threes: 7, bombs: 15 },
-    { twos: 10, threes: 4, bombs: 15 },
-    { twos: 8, threes: 4, bombs: 15 },
-    { twos: 5, threes: 6, bombs: 15 },
-    { twos: 9, threes: 6, bombs: 15 },
-  ],
+  8: [{ twos: 11, threes: 3, fours: 2, bombs: 18 }],
+};
+
+const size9Placements = {
+  //12%-20% values and 25% bombs
+  1: [{ twos: 2, threes: 2, fours: 2, fives: 2, bombs: 16 }], //14400
+  //16%-24% values and 28% bombs
+  2: [{ twos: 3, threes: 3, fours: 2, fives: 2, bombs: 18 }], //86400
+  // 20%-28% values and 32% bombs
+  3: [{ twos: 4, threes: 4, fours: 2, fives: 2, bombs: 20 }], //518400
+  // 20%-32% values and 40% bombs
+  4: [{ twos: 5, threes: 4, fours: 2, fives: 2, bombs: 25 }], //1036800
+  // 24% - 36% values and 40% bombs
+  5: [{ twos: 5, threes: 5, fours: 2, fives: 2, bombs: 25 }], //3110400
+  // 24% - 36% values and 40% bombs
+  6: [{ twos: 5, threes: 5, fours: 3, fives: 2, bombs: 25 }], //12441600
+  // 28% - 40% values and 40% bombs
+  7: [{ twos: 5, threes: 5, fours: 3, fives: 2, bombs: 25 }], //49766400
+  // 28% - 40% values and 40% bombs
+  8: [{ twos: 5, threes: 5, fours: 3, fives: 4, bombs: 25 }], //49766400
 };
 
 const difficultyPlacements = {
@@ -279,7 +250,7 @@ const difficultyPlacements = {
   6: size6Placements,
   7: size7Placements,
   8: size8Placements,
-  9: size6Placements,
+  9: size9Placements,
 };
 console.log(difficultyPlacements);
 export default difficultyPlacements;
