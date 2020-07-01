@@ -203,7 +203,7 @@ const OptionsMenu = (props) => {
               {" "}
               RULES
               <p>
-                The objective of the game is to uncover all 2 and 3 tiles on a
+                The objective of the game is to uncover all non-1 tiles on a
                 given board and move up to higher levels, which give you more
                 coins. This repeats up to level 8, where the game ends.
               </p>
