@@ -252,5 +252,5 @@ const difficultyPlacements = {
   8: size8Placements,
   9: size9Placements,
 };
-console.log(difficultyPlacements);
+
 export default difficultyPlacements;

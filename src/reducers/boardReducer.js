@@ -109,7 +109,6 @@ const boardReducer = (state = initialState, action) => {
 
   if (action.type === UPDATE_GRID) {
     let boardInfo = generateInitialGrid(action.value, state.level);
-    // let newGrid = generateInitialGrid(action.value);
     return {
       ...state,
       grid: boardInfo.grid,

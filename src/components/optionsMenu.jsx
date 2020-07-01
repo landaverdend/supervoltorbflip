@@ -8,6 +8,8 @@ import {
   CHANGE_VIEW,
   FLIP_ALL_UNCLICKED,
   RESET_ROUND_SCORE,
+  UPDATE_TOTAL_SCORE,
+  UPDATE_LEVEL,
 } from "../actions/actionTypes";
 
 const Views = {
@@ -88,6 +90,8 @@ const OptionsMenu = (props) => {
                     props.flipToUnclicked();
                     setTimeout(props.resetGrid, 250);
                     props.resetRoundScore();
+                    props.updateTotalScore(0);
+                    props.updateLevel(1);
                   }}
                 >
                   Reset
@@ -108,10 +112,12 @@ const OptionsMenu = (props) => {
                           if (props.dimension - 1 > 3) {
                             props.updateGrid(props.dimension - 1);
                             props.resetRoundScore();
+                            props.updateTotalScore(0);
+                            props.updateLevel(1);
                           }
                         }}
                       >
-                        -
+                        <b>-</b>
                       </button>
                       {props.dimension - 1}
                       <button
@@ -119,10 +125,12 @@ const OptionsMenu = (props) => {
                           if (props.dimension + 1 < 10) {
                             props.updateGrid(props.dimension + 1);
                             props.resetRoundScore();
+                            props.updateTotalScore(0);
+                            props.updateLevel(1);
                           }
                         }}
                       >
-                        +
+                        <b>+</b>
                       </button>
                     </div>
                   </li>
@@ -221,6 +229,9 @@ function mapDispatchToProps(dispatch) {
     setView: (val) => dispatch({ type: CHANGE_VIEW, value: val }),
     flipToUnclicked: () => dispatch({ type: FLIP_ALL_UNCLICKED }),
     resetRoundScore: () => dispatch({ type: RESET_ROUND_SCORE }),
+    updateTotalScore: (val) =>
+      dispatch({ type: UPDATE_TOTAL_SCORE, value: val }),
+    updateLevel: (val) => dispatch({ type: UPDATE_LEVEL, value: val }),
   };
 }
 
