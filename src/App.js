@@ -15,6 +15,7 @@ import {
   TOGGLE_ROUND_INTERMISSION,
   OPEN_DIALOGUE_BOX,
   UPDATE_TOTAL_SCORE,
+  CHANGE_VIEW,
 } from "./actions/actionTypes";
 import "./styles/index.css";
 
@@ -85,6 +86,8 @@ const handleKeyPress = (event) => {
   }
 
   if (event.keyCode === 27) {
+    if (state.menuReducer.menuOpened)
+      setTimeout(() => store.dispatch({ type: CHANGE_VIEW, value: 0 }), 250);
     store.dispatch({ type: TOGGLE_MENU });
   }
   let updateMemos = (eventInfo) =>
@@ -106,6 +109,7 @@ const handleClick = (event) => {
       event.target === document.getElementsByClassName("modal show-modal")[0]
     ) {
       store.dispatch({ type: TOGGLE_MENU });
+      setTimeout(() => store.dispatch({ type: CHANGE_VIEW, value: 0 }), 250); //Views.default is 0
     }
   }
   if (roundIntermission) {

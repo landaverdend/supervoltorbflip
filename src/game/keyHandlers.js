@@ -100,10 +100,21 @@ function checkColumnFlipped(col, grid) {
   return true;
 }
 
+var transitioning = false;
+
+document.addEventListener("transitionrun", () => {
+  transitioning = true;
+});
+
+document.addEventListener("transitionend", () => {
+  transitioning = false;
+});
+
 //for when the game has dialogue open. I apologize for hard coding it.
 export const dialogueHandler = (state, dispatch, keyCode) => {
   //any keys but arrow should advance the click state.
-  if (keyCode <= 40 && keyCode >= 37) {
+  if ((keyCode <= 40 && keyCode >= 37) || transitioning) {
+    console.log("ah ah ah");
     return;
   }
   let clicks = state.gameReducer.clicks;

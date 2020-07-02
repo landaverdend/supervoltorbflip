@@ -38,7 +38,13 @@ const OptionsMenu = (props) => {
       ></i>
       <div className={props.menuOpened ? "modal show-modal" : "modal"}>
         <div className="modal-content">
-          <span className="close-button" onClick={props.toggleMenu}>
+          <span
+            className="close-button"
+            onClick={() => {
+              props.toggleMenu();
+              setTimeout(() => setView(Views.DEFAULT), 250);
+            }}
+          >
             X
           </span>
           {view !== Views.DEFAULT ? (
