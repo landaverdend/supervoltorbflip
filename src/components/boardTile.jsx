@@ -10,7 +10,6 @@ const BoardTile = (props) => {
   const col = props.col;
   const clicked = props.clicked;
   const memos = props.memos;
-  // console.log(props.maxRoundPoints);
   const checkCurrent = () => {
     return props.currentTile[0] === row && props.currentTile[1] === col;
   };
