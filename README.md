@@ -2,8 +2,6 @@
 
 - add sound effects?
 - fix bug with animations at the end of the round and fast clicking
-- on menu exit, default back to all of the options.
-- fix bug where an extra one is added to total score at end of round.
 
   **COMPLETE**
 
