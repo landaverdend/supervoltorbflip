@@ -14,13 +14,13 @@
 
 .dialogue-modal-content {
   position: absolute;
-  top: 90%;
+  top: 85%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
   padding: 1rem 1.5rem;
   width: 50%;
-  height: 5rem;
+  height: auto;
   border: 2px solid #001a13;
   font-size: 3.8rem;
   /* z-index: 10000 !important; */

@@ -113,30 +113,26 @@ document.addEventListener("transitionend", () => {
 //for when the game has dialogue open. I apologize for hard coding it.
 export const dialogueHandler = (state, dispatch, keyCode) => {
   //any keys but arrow should advance the click state.
-  if ((keyCode <= 40 && keyCode >= 37) || transitioning) {
-    console.log("ah ah ah");
-    return;
-  }
   let clicks = state.gameReducer.clicks;
   let dimension = state.boardReducer.dimension - 1;
 
-  //open dialogue box.
-  if (clicks === 0) {
-    dispatch({
-      type: CHANGE_DIALOGUE_TEXT,
-      value: "Resetting collected coins...",
-    });
-    dispatch({ type: SET_CLICKS, value: clicks + 1 });
-  }
+  // //open dialogue box.
+  // if (clicks === 0) {
+  //   dispatch({
+  //     type: CHANGE_DIALOGUE_TEXT,
+  //     value: "Resetting collected coins...",
+  //   });
+  //   dispatch({ type: SET_CLICKS, value: clicks + 1 });
+  // }
   //close the dialogue box, flip everything over.
-  if (clicks === 1) {
+  if (clicks === 0) {
     dispatch({ type: CLOSE_DIALOGUE_BOX });
     dispatch({ type: SET_CLICKS, value: clicks + 1 });
     cascadeFlip(dimension, dispatch, true, state.boardReducer.grid);
   }
 
   //before the animation to return to unclicked
-  if (clicks === 2) {
+  if (clicks === 1) {
     cascadeFlipReverse(dimension, dispatch, false, state.boardReducer.grid);
     dispatch({ type: SET_CLICKS, value: clicks + 1 });
     let level = state.boardReducer.level;
@@ -155,7 +151,7 @@ export const dialogueHandler = (state, dispatch, keyCode) => {
   }
 
   //Close the dialogue box and start the next round.
-  if (clicks === 3) {
+  if (clicks === 2) {
     dispatch({ type: RESET_GRID });
     dispatch({ type: CLOSE_DIALOGUE_BOX });
     dispatch({ type: SET_CLICKS, value: 0 });
