@@ -112,6 +112,7 @@ document.addEventListener("transitionend", () => {
 
 //for when the game has dialogue open. I apologize for hard coding it.
 export const dialogueHandler = (state, dispatch, keyCode) => {
+  if (transitioning) return;
   //any keys but arrow should advance the click state.
   let clicks = state.gameReducer.clicks;
   let dimension = state.boardReducer.dimension - 1;
