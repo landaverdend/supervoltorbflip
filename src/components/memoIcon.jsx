@@ -5,7 +5,7 @@ const MemoIcon = (props) => {
   let memos = props.memoState;
   return (
     <>
-      {memos.BOMB ? (
+      {memos.BOMB && !props.clicked ? (
         <img
           id="bombIcon"
           src={require("../assets/memoIcons/memoBomb.png")}
@@ -14,7 +14,7 @@ const MemoIcon = (props) => {
       ) : (
         ""
       )}
-      {memos.ONE ? (
+      {memos.ONE && !props.clicked ? (
         <img
           id="oneIcon"
           alt={""}
@@ -23,7 +23,7 @@ const MemoIcon = (props) => {
       ) : (
         ""
       )}
-      {memos.TWO ? (
+      {memos.TWO && !props.clicked ? (
         <img
           id="twoIcon"
           alt={""}
@@ -32,7 +32,7 @@ const MemoIcon = (props) => {
       ) : (
         ""
       )}
-      {memos.THREE ? (
+      {memos.THREE && !props.clicked ? (
         <img
           id="threeIcon"
           alt={""}

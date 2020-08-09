@@ -55,7 +55,7 @@ const BoardTile = (props) => {
         {props.clickable ? (
           <div className={clicked ? "card flipped" : "card"}>
             <div className={"front"}>
-              <MemoIcon memoState={memos} />
+              <MemoIcon memoState={memos} clicked={clicked} />
               <img
                 src={
                   checkCurrent()
