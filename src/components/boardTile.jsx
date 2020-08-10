@@ -31,6 +31,7 @@ const BoardTile = (props) => {
       if (props.roundScore * props.value === props.maxRoundPoints) {
         props.openDialogueBox("You win! YOU ARE SO SMART!!!");
         props.toggleRound(false);
+        // props.updateLevel();
       }
     }
   };

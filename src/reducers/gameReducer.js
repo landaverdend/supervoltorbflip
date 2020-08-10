@@ -12,7 +12,6 @@ import {
 const initialState = {
   roundScore: 1,
   totalScore: 0,
-  // level: 1,
   dialogueBoxOpen: false,
   roundIntermission: false,
   roundLost: false,

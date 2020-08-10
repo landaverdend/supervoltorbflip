@@ -79,6 +79,7 @@ function mapStateToProps(state) {
     menuOpened: state.menuReducer.menuOpened,
     roundIntermission: state.gameReducer.roundIntermission,
     maxRoundPoints: state.boardReducer.maxRoundPoints,
+    level: state.boardReducer.level,
   };
 }
 

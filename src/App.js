@@ -80,8 +80,7 @@ const handleKeyPress = (event) => {
         value: "You win! YOU ARE SO SMART!!!",
       });
       store.dispatch({ type: UPDATE_TOTAL_SCORE, value: curScore });
-
-      store.dispatch({ type: TOGGLE_ROUND_INTERMISSION, value: true });
+      store.dispatch({ type: TOGGLE_ROUND_INTERMISSION, value: false }); //value maps to roundLost
     }
   }
 
