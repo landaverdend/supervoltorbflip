@@ -111,19 +111,14 @@ document.addEventListener("transitionend", () => {
 
 //for when the game has dialogue open. I apologize for hard coding it.
 export const dialogueHandler = (state, dispatch, keyCode) => {
-  if (transitioning) return;
-  //any keys but arrow should advance the click state.
+  console.log(keyCode);
+  if (transitioning || (keyCode >= 37 && keyCode <= 40)) {
+    console.log("here!");
+    return;
+  } //any keys but arrow should advance the click state.
   let clicks = state.gameReducer.clicks;
   let dimension = state.boardReducer.dimension - 1;
 
-  // //open dialogue box.
-  // if (clicks === 0) {
-  //   dispatch({
-  //     type: CHANGE_DIALOGUE_TEXT,
-  //     value: "Resetting collected coins...",
-  //   });
-  //   dispatch({ type: SET_CLICKS, value: clicks + 1 });
-  // }
   //close the dialogue box, flip everything over.
   if (clicks === 0) {
     dispatch({ type: CLOSE_DIALOGUE_BOX });
