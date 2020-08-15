@@ -15,6 +15,9 @@ const ARROW_KEYS = {
   RIGHT: 39,
 };
 
+//global variable to keep track of whether or not game is animating
+var transitioning = false;
+
 export const arrowHandler = (row, col, keyCode, dimension) => {
   if (row === -1 && col === -1) return [0, 0];
 
@@ -44,7 +47,6 @@ export const arrowHandler = (row, col, keyCode, dimension) => {
 };
 
 export const memoHandler = (keyCode, grid, currentTile, dispatchFunction) => {
-  //get outta here.
   if (
     currentTile[0] === -1 ||
     currentTile[1] === -1 ||
@@ -74,10 +76,16 @@ function cascadeFlip(dimension, dispatch, clickedVal, grid) {
   let func = (num, clickedVal) => {
     dispatch({ type: FLIP_COLUMN, value: num, clicked: clickedVal });
   };
+  //interval of when board is being flipped.
+  transitioning = true;
+  setTimeout(() => {
+    transitioning = false;
+  }, 200 * dimension);
+
   for (let i = 0, timeToWait = 0; i < dimension; i++) {
     if (!checkColumnFlipped(i, grid)) {
       setTimeout(() => func(i, clickedVal), timeToWait);
-      timeToWait += 250;
+      timeToWait += 200;
     }
   }
 }
@@ -86,6 +94,12 @@ function cascadeFlipReverse(dimension, dispatch, clickedVal, grid) {
   let func = (num, clickedVal) => {
     dispatch({ type: FLIP_COLUMN, value: num, clicked: clickedVal });
   };
+  //interval of when board is being flipped.
+  transitioning = true;
+  setTimeout(() => {
+    transitioning = false;
+  }, 200 * dimension);
+
   for (let i = dimension - 1, timeToWait = 0; i >= 0; i--, timeToWait += 200) {
     setTimeout(() => func(i, clickedVal), timeToWait);
   }
@@ -99,23 +113,12 @@ function checkColumnFlipped(col, grid) {
   return true;
 }
 
-var transitioning = false;
-
-document.addEventListener("transitionrun", () => {
-  transitioning = true;
-});
-
-document.addEventListener("transitionend", () => {
-  transitioning = false;
-});
-
 //for when the game has dialogue open. I apologize for hard coding it.
 export const dialogueHandler = (state, dispatch, keyCode) => {
-  console.log(keyCode);
-  if (transitioning || (keyCode >= 37 && keyCode <= 40)) {
-    console.log("here!");
-    return;
-  } //any keys but arrow should advance the click state.
+  //no input allowed on flip or arrow keys
+  if (transitioning || (keyCode >= 37 && keyCode <= 40)) return;
+
+  //any keys but arrow should advance the click state.
   let clicks = state.gameReducer.clicks;
   let dimension = state.boardReducer.dimension - 1;
 
