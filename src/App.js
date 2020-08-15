@@ -61,7 +61,8 @@ const handleKeyPress = (event) => {
     if (currentTile[0] === -1 || currentTile[1] === -1) return;
 
     let tile = grid[currentTile[0]][currentTile[1]];
-    if (!tile.clickable) return; // this is here because you can hit space bar while moused over the outside tile. which fucks everything up.
+    //edge cases for already clicked tiles.
+    if (!tile.clickable || tile.clicked) return;
 
     store.dispatch({ type: UPDATE_CLICKED });
     store.dispatch({ type: UPDATE_ROUND_SCORE, value: tile.value });
@@ -74,6 +75,7 @@ const handleKeyPress = (event) => {
     }
 
     const curScore = state.gameReducer.roundScore * tile.value;
+
     if (curScore === state.boardReducer.maxRoundPoints) {
       store.dispatch({
         type: OPEN_DIALOGUE_BOX,

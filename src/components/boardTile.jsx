@@ -15,7 +15,7 @@ const BoardTile = (props) => {
   };
 
   const handleClick = () => {
-    if (props.roundIntermission) {
+    if (props.roundIntermission || props.clicked) {
       return;
     }
 
