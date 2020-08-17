@@ -1,4 +1,4 @@
-**THINGS TO DO:**
-- add sound effects?
-- fix bug with animations at the end of the round and fast clicking
-- Make size of the grid responsive.
+**OVERVIEW**
+
+This is just a simple clone/extension of the old Voltorb flip minigame from Pokemon HeartGold and SoulSilver. If you change the board size, it may not be perfectly balanced
+as this feature wasn't originally supported within the original Voltorb Flip.
