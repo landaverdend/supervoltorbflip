@@ -7,8 +7,8 @@ services:
     ports:
       - '3002:3002'
     restart: unless-stopped
-  networks:
-    - web
+    networks:
+      - web
 
 networks:
   web:
