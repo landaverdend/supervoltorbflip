@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  container: voltorb-flip
+  container_name: voltorb-flip
   web:
     build: .
     ports:
