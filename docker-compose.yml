@@ -1,8 +1,15 @@
 version: '3.8'
 
 services:
+  container: voltorb-flip
   web:
     build: .
     ports:
       - '3002:3002'
     restart: unless-stopped
+  networks:
+    - web
+
+networks:
+  web:
+    external: true
