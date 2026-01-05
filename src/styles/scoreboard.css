@@ -45,3 +45,75 @@
   /* padding: 0.0125rem; */
   width: 1.5rem;
 }
+
+/* Tablet responsive styles - keep horizontal but smaller */
+@media (max-width: 768px) {
+  .score-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 0.25rem;
+  }
+
+  .score,
+  .level-box {
+    padding: 0.4rem 0.6rem;
+    margin: 0.25rem;
+  }
+
+  .score-text {
+    font-size: 1.4rem;
+    padding-right: 0.4rem;
+    margin-top: 0.2rem;
+  }
+
+  .score img,
+  .level-box img {
+    height: 1.6rem;
+    width: 1rem;
+  }
+}
+
+/* Mobile responsive styles - stack vertically */
+@media (max-width: 480px) {
+  .score-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .score,
+  .level-box {
+    padding: 0.35rem 0.5rem;
+    margin: 0.15rem 0;
+  }
+
+  .score-text {
+    font-size: 1.1rem;
+    padding-right: 0.3rem;
+    margin-top: 0.15rem;
+  }
+
+  .score img,
+  .level-box img {
+    height: 1.3rem;
+    width: 0.8rem;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 375px) {
+  .score-text {
+    font-size: 0.9rem;
+    padding-right: 0.2rem;
+  }
+
+  .score img,
+  .level-box img {
+    height: 1.1rem;
+    width: 0.7rem;
+  }
+
+  .score,
+  .level-box {
+    padding: 0.25rem 0.4rem;
+  }
+}

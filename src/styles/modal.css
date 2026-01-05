@@ -45,3 +45,23 @@
     width: 100%;
   }
 }
+
+/* Tablet responsive styles */
+@media screen and (max-width: 768px) {
+  .dialogue-modal-content {
+    width: 70%;
+    padding: 0.75rem 1rem;
+    font-size: 2.5rem;
+    border-radius: 0.75rem;
+  }
+}
+
+/* Mobile responsive styles */
+@media screen and (max-width: 480px) {
+  .dialogue-modal-content {
+    width: 85%;
+    padding: 0.5rem 0.75rem;
+    font-size: 1.5rem;
+    border-radius: 0.5rem;
+  }
+}
