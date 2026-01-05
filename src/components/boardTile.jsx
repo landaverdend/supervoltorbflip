@@ -44,7 +44,10 @@ const BoardTile = (props) => {
         if (props.clickable && !clicked)
           props.updateMemos({ ...memos, BOMB: !props.memos.BOMB });
       }}
-      onClick={() => handleClick()}
+      onClick={(e) => {
+        e.stopPropagation();
+        handleClick();
+      }}
       onMouseEnter={() => {
         props.updateCurrentTile({ type: "mouse", row: row, col: col });
       }}

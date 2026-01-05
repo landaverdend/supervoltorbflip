@@ -102,3 +102,41 @@
   /* content: url(../assets/clickedTileHover.png); */
   cursor: pointer;
 }
+
+/* Mobile-small (320px) responsive styles */
+@media screen and (max-width: 375px) {
+  .grid-container {
+    padding-top: 1rem;
+    padding-bottom: 5rem;
+    grid-gap: 0.2rem;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .grid-item img {
+    height: 3rem;
+    width: 3rem;
+  }
+
+  #digitOne {
+    margin-left: -1.1rem;
+    margin-top: 0.25rem;
+    height: 0.8rem;
+    width: 0.7rem;
+  }
+
+  #digitTwo {
+    margin-left: -1.85rem;
+    margin-top: 0.25rem;
+    height: 0.8rem;
+    width: 0.7rem;
+  }
+
+  #bombCount {
+    margin-left: -1.15rem;
+    margin-top: 1.55rem;
+    height: 0.95rem;
+    width: 0.8rem;
+  }
+}
